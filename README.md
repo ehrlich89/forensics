@@ -48,26 +48,33 @@ public class KauflandBeaconScannerListener implements BeaconScannerListener {
             Beacon beacon = beaconMessage.getBeacon();
             Region region = beaconMessage.getRegion();
             if (beaconMessage.getType().equals("IBeaconMessage")) {
-                IBeaconMessage message = (IBeaconMessage) beaconMessage;
-                UUID uuid = message.getUUID();
-                int major = message.getMajor();
-                int minor = message.getMinor();
-                Log.d("BeaconMessage", "iBeacon: UUID = " + uuid + ", major = " + major + ", minor = " + minor);
-                // Do something
+                handleIBeaconMessage(beaconMessage);
             } else if (beaconMessage.getType().equals("RelutionTagMessageV1")) {
-                RelutionTagMessage message = (RelutionTagMessage) beaconMessage;
-                List<Long> relutionTags = message.getTags();
-                String outputString = "RelutionTagMessageV1: tags = ";
-                for (int i = 0;i < relutionTags.size();i++) {
-                    if (i != 0) {
-                        outputString += ", ";
-                    }
-                    outputString += relutionTags.get(i);
-                }
-                outputString += ", txPower = " + beaconMessage.getTxPower();
-                Log.d("BeaconMessage", outputString);
+                handleRelutionTagMessage(beaconMessage);
             }
         }
+    }
+    
+    private void handleIBeaconMessage(BeaconMessage beaconMessage) {
+        IBeaconMessage message = (IBeaconMessage) beaconMessage;
+        UUID uuid = message.getUUID();
+        int major = message.getMajor();
+        int minor = message.getMinor();
+        Log.d("BeaconMessage", "iBeacon: UUID = " + uuid + ", major = " + major + ", minor = " + minor);
+    }
+
+    private void handleRelutionTagMessage(BeaconMessage beaconMessage) {
+        RelutionTagMessage message = (RelutionTagMessage) beaconMessage;
+        List<Long> relutionTags = message.getTags();
+        String outputString = "RelutionTagMessageV1: tags = ";
+        for (int i = 0;i < relutionTags.size();i++) {
+            if (i != 0) {
+                outputString += ", ";
+            }
+            outputString += relutionTags.get(i);
+        }
+        outputString += ", txPower = " + beaconMessage.getTxPower();
+        Log.d("BeaconMessage", outputString);
     }
 
     @Override
