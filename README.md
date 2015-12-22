@@ -6,7 +6,7 @@ The library is still in an early development phase. Currently supported features
 - Advertising arbitrary data as manufacturer specific data.
 
 ## Example
-In order to start scanning you only need to get the singleton instance of the ```BeaconScanner``` class, pass a ```BeaconScannerConfiguration``` object and call the ```startScanning``` method. To get informed about incoming beacon messages you have to pass the class object of a class that implements the ```BeaconScannerListener``` interface. Passing the class object is necessary to support background scanning after app termination.
+In order to start scanning you only need to get the singleton instance of the ```BeaconScanner``` class, pass a ```BeaconScannerConfiguration``` object and call the ```startScanning``` method. To get informed about incoming beacon messages you have to pass the class object of a ```BeaconScannerListener```. Passing the class object is necessary to support background scanning after app termination.
 ```java
 private void testScanning() {
       try {
@@ -24,7 +24,7 @@ private void testScanning() {
   }
 ```
 
-The ```BeaconScannerListener``` class provides the handler methods ```onMeshActive```, ```onMeshInactive``` and ```onBeaconUpdate``` that are called by the scanner's background service.
+The handler methods ```onMeshActive```, ```onMeshInactive``` and ```onBeaconUpdate``` of the ```BeaconScannerListener``` are called by the scanner's background service even if the user tries to terminate the app.
 ```java
 public class MyBeaconScannerListener implements BeaconScannerListener {
 
