@@ -33,24 +33,11 @@ public class KauflandBeaconScannerListener implements BeaconScannerListener {
     @Override
     public void onMeshActive(Context context) {
         Log.d(Config.projectName, "onMeshActive");
-        try {
-            beaconAdvertiser = new BeaconAdvertiser(context);
-            beaconAdvertiser.startAdvertisingDiscoveryMessage();
-        } catch (PeripheralAdvertisingNotSupportedException e) {
-            e.printStackTrace();
-        } catch (BluetoothDisabledException e) {
-            e.printStackTrace();
-        }
     }
 
     @Override
     public void onMeshInactive(Context context) {
         Log.d(Config.projectName, "onMeshInactive");
-        beaconAdvertiser.stopAdvertising();
-        // Print out the scan log.
-        BeaconScanner beaconScanner = BeaconScanner.getInstance(context);
-        BeaconScannerLog log = beaconScanner.getLog();
-        log.print();
     }
 
     @Override
@@ -79,7 +66,6 @@ public class KauflandBeaconScannerListener implements BeaconScannerListener {
                 }
                 outputString += ", txPower = " + beaconMessage.getTxPower();
                 Log.d("BeaconMessage", outputString);
-                // Do something else
             }
         }
     }
