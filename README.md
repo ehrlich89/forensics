@@ -6,7 +6,7 @@ The library is still in an early development phase. Currently supported features
 - Advertising arbitrary data as manufacturer specific data.
 
 ## Example
-The scanner class:
+In order to start scanning you only need to get an instance of the ```BeaconScanner``` class, pass a ```BeaconScannerConfiguration``` object and call the ```startScanning``` method.
 ```java
 private void testScanning() {
       try {
