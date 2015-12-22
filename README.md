@@ -17,7 +17,7 @@ private void testScanning() {
           config.scanRelutionTags(new long[]{13, 2});
           config.setBackgroundMode(true);
           config.setLoggingEnabled(true);
-          beaconScanner.startScanning(config, KauflandBeaconScannerListener.class);
+          beaconScanner.startScanning(config, MyBeaconScannerListener.class);
       } catch (BluetoothDisabledException e) {
           e.printStackTrace();
       }
@@ -26,7 +26,7 @@ private void testScanning() {
 
 The ```BeaconScannerListener``` class provides the handler methods ```onMeshActive```, ```onMeshInactive``` and ```onBeaconUpdate``` that are called by the scanner's background service.
 ```java
-public class KauflandBeaconScannerListener implements BeaconScannerListener {
+public class MyBeaconScannerListener implements BeaconScannerListener {
 
     private BeaconAdvertiser beaconAdvertiser;
 
