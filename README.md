@@ -18,7 +18,7 @@ BeaconScanner *beaconScanner = [BeaconScanner getInstance];
     [beaconScanner startScanningWithConfig: config AndListener: listener];
 ```
 
-The handler methods ```onMeshActive```, ```onMeshInactive``` and ```onBeaconUpdate``` of the ```BeaconScannerListener``` are called by the scanner's background service whenever messages arrive that match the format specified in the BeaconScannerConfig.
+The handler methods ```onMeshActive```, ```onMeshInactive``` and ```onBeaconUpdate``` of the ```BeaconScannerListener``` are called by the scanner whenever messages arrive that match the format specified in the BeaconScannerConfig.
 ```objective-c
 @implementation MyBeaconScannerListener
 
