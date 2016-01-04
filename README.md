@@ -1,12 +1,12 @@
-# FruityMesh Android SDK
-An Android SDK providing an API to develop applications that interact with BlueRange mesh beacons. The API is intended to provide an easy to use interface to develop time and location based applications that make use of a BlueRange mesh. For more information about BlueRange have a look at this project on github.
+# FruityMesh iOS SDK
+An iOS SDK providing an API to develop applications that interact with BlueRange mesh beacons. The API is intended to provide an easy to use interface to develop time and location based applications that make use of a BlueRange mesh. For more information about BlueRange have a look at this project on github.
 
 The library is still in an early development phase. Currently supported features are:
-- Scanning for iBeacon messages and Relution Tag messages (RelutionTagMessageV1) in foreground and in background mode. Scanning in background mode works even if the app has been terminated by the user.
-- Advertising arbitrary data as manufacturer specific data.
+- Scanning for iBeacon messages in foreground and background and Relution Tag messages (RelutionTagMessageV1) in foreground mode.
+- Advertising arbitrary UUIDs as manufacturer specific data.
 
 ## Example
-In order to start scanning you only need to get the singleton instance of the ```BeaconScanner``` class, pass a ```BeaconScannerConfiguration``` object and call the ```startScanning``` method. To get informed about incoming beacon messages you have to pass the class object of a ```BeaconScannerListener```. Passing the class object is necessary to support background scanning after app termination.
+In order to start scanning you only need to get the singleton instance of the ```BeaconScanner``` class, pass a ```BeaconScannerConfig``` object and call the ```startScanning``` method. To get informed about incoming beacon messages you have to pass a ```BeaconScannerListener``` object.
 ```objective-c
 BeaconScanner *beaconScanner = [BeaconScanner getInstance];
     BeaconScannerConfig *config = [[BeaconScannerConfig alloc] init];
@@ -18,7 +18,7 @@ BeaconScanner *beaconScanner = [BeaconScanner getInstance];
     [beaconScanner startScanningWithConfig: config AndListener: listener];
 ```
 
-The handler methods ```onMeshActive```, ```onMeshInactive``` and ```onBeaconUpdate``` of the ```BeaconScannerListener``` are called by the scanner's background service even if the user tries to terminate the app.
+The handler methods ```onMeshActive```, ```onMeshInactive``` and ```onBeaconUpdate``` of the ```BeaconScannerListener``` are called by the scanner's background service whenever messages arrive that match the format specified in the BeaconScannerConfig.
 ```objective-c
 @implementation MyBeaconScannerListener
 
