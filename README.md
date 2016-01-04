@@ -8,15 +8,14 @@ The library is still in an early development phase. Currently supported features
 ## Example
 In order to start scanning you only need to get the singleton instance of the ```BeaconScanner``` class, pass a ```BeaconScannerConfiguration``` object and call the ```startScanning``` method. To get informed about incoming beacon messages you have to pass the class object of a ```BeaconScannerListener```. Passing the class object is necessary to support background scanning after app termination.
 ```objective-c
-- (void) testScanning {
-    BeaconScanner *beaconScanner = [BeaconScanner getInstance];
+BeaconScanner *beaconScanner = [BeaconScanner getInstance];
     BeaconScannerConfig *config = [[BeaconScannerConfig alloc] init];
     [config scanIBeacon:@"b9407f30-f5f8-466e-aff9-25556b57fe6d" major:45 minor:1];
     [config scanIBeacon:@"c9407f30-f5f8-466e-aff9-25556b57fe6d" major:46 minor:2];
-    [config scanRelutionTags:[[NSArray alloc] initWithObjects:[NSNumber numberWithLong:13], [NSNumber numberWithLong:2], nil]];
+    [config scanRelutionTags:[[NSArray alloc] initWithObjects:
+                              [NSNumber numberWithLong:13], [NSNumber numberWithLong:2], nil]];
     MyBeaconScannerListener *listener = [[MyBeaconScannerListener alloc] init];
     [beaconScanner startScanningWithConfig: config AndListener: listener];
-}
 ```
 
 The handler methods ```onMeshActive```, ```onMeshInactive``` and ```onBeaconUpdate``` of the ```BeaconScannerListener``` are called by the scanner's background service even if the user tries to terminate the app.
