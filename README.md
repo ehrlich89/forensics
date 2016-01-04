@@ -3,7 +3,7 @@ An iOS SDK providing an API to develop applications that interact with BlueRange
 
 The library is still in an early development phase. Currently supported features are:
 - Scanning for iBeacon messages in foreground and background and Relution Tag messages (RelutionTagMessageV1) in foreground mode.
-- Advertising arbitrary UUIDs as manufacturer specific data.
+- Advertising arbitrary UUIDs.
 
 ## Example
 In order to start scanning you only need to get the singleton instance of the ```BeaconScanner``` class, pass a ```BeaconScannerConfig``` object and call the ```startScanning``` method. To get informed about incoming beacon messages you have to pass a ```BeaconScannerListener``` object.
