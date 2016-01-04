@@ -7,79 +7,63 @@ The library is still in an early development phase. Currently supported features
 
 ## Example
 In order to start scanning you only need to get the singleton instance of the ```BeaconScanner``` class, pass a ```BeaconScannerConfiguration``` object and call the ```startScanning``` method. To get informed about incoming beacon messages you have to pass the class object of a ```BeaconScannerListener```. Passing the class object is necessary to support background scanning after app termination.
-```java
-private void testScanning() {
-      try {
-          BeaconScanner beaconScanner = BeaconScanner.getInstance(this);
-          BeaconScannerConfig config = new BeaconScannerConfig();
-          config.scanIBeacon("b9407f30-f5f8-466e-aff9-25556b57fe6d", 45, 1);
-          config.scanIBeacon("c9407f30-f5f8-466e-aff9-25556b57fe6d", 46, 2);
-          config.scanRelutionTags(new long[]{13, 2});
-          config.setBackgroundMode(true);
-          config.setLoggingEnabled(true);
-          beaconScanner.startScanning(config, MyBeaconScannerListener.class);
-      } catch (BluetoothDisabledException e) {
-          e.printStackTrace();
-      }
-  }
+```objective-c
+- (void) testScanning {
+    BeaconScanner *beaconScanner = [BeaconScanner getInstance];
+    BeaconScannerConfig *config = [[BeaconScannerConfig alloc] init];
+    [config scanIBeacon:@"b9407f30-f5f8-466e-aff9-25556b57fe6d" major:45 minor:1];
+    [config scanIBeacon:@"c9407f30-f5f8-466e-aff9-25556b57fe6d" major:46 minor:2];
+    [config scanRelutionTags:[[NSArray alloc] initWithObjects:[NSNumber numberWithLong:13], [NSNumber numberWithLong:2], nil]];
+    MyBeaconScannerListener *listener = [[MyBeaconScannerListener alloc] init];
+    [beaconScanner startScanningWithConfig: config AndListener: listener];
+}
 ```
 
 The handler methods ```onMeshActive```, ```onMeshInactive``` and ```onBeaconUpdate``` of the ```BeaconScannerListener``` are called by the scanner's background service even if the user tries to terminate the app.
-```java
-public class MyBeaconScannerListener implements BeaconScannerListener {
+```objective-c
+@implementation MyBeaconScannerListener
 
-    private BeaconAdvertiser beaconAdvertiser;
+- (void) onMeshActive
+{
+    NSLog(@"onMeshActive");
+}
 
-    @Override
-    public void onMeshActive(Context context) {
-        Log.d(Config.projectName, "onMeshActive");
-    }
-
-    @Override
-    public void onMeshInactive(Context context) {
-        Log.d(Config.projectName, "onMeshInactive");
-    }
-
-    @Override
-    public void onBeaconUpdate(Context context, List<BeaconMessage> beaconMessages) {
-        Log.d(Config.projectName, "onBeaconUpdate");
-
-        for (BeaconMessage beaconMessage : beaconMessages) {
-            Beacon beacon = beaconMessage.getBeacon();
-            Region region = beaconMessage.getRegion();
-            if (beaconMessage.getType().equals("IBeaconMessage")) {
-                handleIBeaconMessage(beaconMessage);
-            } else if (beaconMessage.getType().equals("RelutionTagMessageV1")) {
-                handleRelutionTagMessage(beaconMessage);
-            }
-        }
-    }
-    
-    private void handleIBeaconMessage(BeaconMessage beaconMessage) {
-        IBeaconMessage message = (IBeaconMessage) beaconMessage;
-        UUID uuid = message.getUUID();
-        int major = message.getMajor();
-        int minor = message.getMinor();
-        Log.d("BeaconMessage", "iBeacon: UUID = " + uuid + ", major = " + major + ", minor = " + minor);
-    }
-
-    private void handleRelutionTagMessage(BeaconMessage beaconMessage) {
-        RelutionTagMessage message = (RelutionTagMessage) beaconMessage;
-        List<Long> relutionTags = message.getTags();
-        String outputString = "RelutionTagMessageV1: tags = ";
-        for (int i = 0;i < relutionTags.size();i++) {
-            if (i != 0) {
-                outputString += ", ";
-            }
-            outputString += relutionTags.get(i);
-        }
-        outputString += ", txPower = " + beaconMessage.getTxPower();
-        Log.d("BeaconMessage", outputString);
-    }
-
-    @Override
-    public void onError(Context context) {
-        Log.d(Config.projectName, "onError");
+- (void) onBeaconUpdate: (id<BeaconMessage>) beaconMessage
+{
+    if ([[beaconMessage getType] isEqualToString:@"IBeaconMessage"]) {
+        [self handleIBeaconMessage: (IBeaconMessage*)beaconMessage];
+    } else if ([[beaconMessage getType] isEqualToString:@"RelutionTagMessageV1"]) {
+        [self handleRelutionTagMessage: (RelutionTagMessage*)beaconMessage];
     }
 }
+
+- (void) handleIBeaconMessage: (IBeaconMessage*) beaconMessage
+{
+    NSString *uuid = beaconMessage.uuid.UUIDString;
+    int major = beaconMessage.major;
+    int minor = beaconMessage.minor;
+    NSLog(@"iBeacon: UUID = %@, major = %d, minor = %d", uuid, major, minor);
+}
+
+- (void) handleRelutionTagMessage: (RelutionTagMessage*) beaconMessage
+{
+    NSArray* tags = beaconMessage.tags;
+    NSMutableString *outputString = [[NSMutableString alloc] initWithString:@"RelutionTagMessageV1: tags = "];
+    for (int i = 0; i < [tags count];i++) {
+        if (i != 0) {
+            [outputString appendString:@", "];
+        }
+        [outputString appendString:[tags[i] stringValue]];
+    }
+    [outputString appendString:@", txPower = "];
+    [outputString appendFormat:@"%d", beaconMessage.txPower];
+    NSLog(@"%@", outputString);
+}
+
+- (void) onMeshInactive
+{
+    NSLog(@"onMeshInactive");
+}
+
+@end
 ```
