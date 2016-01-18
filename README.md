@@ -62,10 +62,10 @@ The handler methods ```onMeshActive```, ```onMeshInactive``` and ```onBeaconUpda
 
 - (void) handleIBeaconMessage: (IBeaconMessage*) beaconMessage
 {
-NSString *uuid = beaconMessage.uuid.UUIDString;
-int major = beaconMessage.major;
-int minor = beaconMessage.minor;
-NSLog(@"iBeacon: UUID = %@, major = %d, minor = %d", uuid, major, minor);
+  NSString *uuid = beaconMessage.uuid.UUIDString;
+  int major = beaconMessage.major;
+  int minor = beaconMessage.minor;
+  NSLog(@"iBeacon: UUID = %@, major = %d, minor = %d", uuid, major, minor);
 }
 
 - (void) handleRelutionTagMessage: (RelutionTagMessage*) beaconMessage
