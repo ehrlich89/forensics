@@ -16,7 +16,7 @@ The SDK is still in an early development phase. Currently the BlueRange SDK supp
 - In the "examples" folder you can see, how the SDK components can be used within your app code. The ```ExampleApplication```class contains some basic examples, of how the background scanning and advertising services can be started.
 - The folder "nearyou" contains an example app, similar to the one contained in the Android SDK, displaying a set of products. Each product could in future be tagged with a specific Relution Tag. If the device is next to a beacon placed beside the product, the app receives the Relution tags and displays the products that are next to the user. You can test the app, if you have an iOS 8.0 device, because testing Bluetooth LE functionality inside the simulator is quite demanding. In order to start the app, you only need to build, deploy and start the application by clicking on the "Run" button on the top left corner of Xcode. After the app has been build and deployed, you should see the example app on your device listing some sample products how it could look in an app using this SDK.
 - To experiment with the SDK, you can have a look at the source code of the ```ExampleApplication``` which shows you how to use the core components of the SDK. In the BlueRange Android SDK you will find some more components making it possible to persist the scanned message stream or periodically sending status reports. In future we are going to implement these components for the iOS version of the BlueRange SDK, as well.
-- 
+
 ## Example
 In the following section we show you, how to define a service that runs in background and listens to a specified set of beacons.
 ### Scanning
