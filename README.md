@@ -24,7 +24,7 @@ At the moment the BlueRange SDK provides the following features:
 - The "sdk" package contains the SDK's source code. So if you are interested in how we implemented the SDK components, you can have a closer look the inner packages.
 - In the "com.mway.bluerange.android.examples" package you can see how the SDK components can be used in the app's source code. The "systemtests" package contains some examples of how background scanning and advertising services can be started.
 - The package "nearyou" contains an example app that can be started if you have a Bluetooth Low Energy capable device. In order to start the app, you only need to build, deploy and start the application. If you are using Android Studio, you can simply use the keyboard shortcut "Shift+F10". On your Android device you should see the example app listing all Beacon messages (iBeacons, Relution Tag messages and JoinMeMessages) that are currently received as specified in the ```BeaconScanService``` class.
-- If you want to experiment with the SDK
+- The best way to start writing your own app would be to start with the NearYou app and modify the classes contained in the corresponding ```nearyou``` folder.
 
 
 ## Scanning and advertising
