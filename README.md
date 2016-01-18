@@ -1,9 +1,13 @@
-# FruityMesh Android SDK
-An Android SDK providing an API to develop applications that interact with BlueRange mesh beacons. The API is intended to provide an easy to use interface to develop time and location based applications that make use of a BlueRange mesh. For more information about BlueRange have a look at this project on github.
+# BlueRange SDK for Android
+An Android SDK providing an API to develop applications that interact with BlueRange mesh beacons. The API is intended to provide an easy to use interface for the development of time and location based applications that make use of BlueRange meshes. For more information about BlueRange have a look at this project on github.
 
 The library is still in an early development phase. Currently supported features are:
-- Scanning for iBeacon messages and Relution Tag messages (RelutionTagMessageV1) in foreground and in background mode. Scanning in background mode works even if the app has been terminated by the user.
-- Advertising arbitrary data as manufacturer specific data.
+- Scanning for iBeacon messages, Relution Tag messages (RelutionTagMessageV1) and JoinMeMessages. 
+- The scanning procedure will be continued when the app is running in background mode, even when the user attempts to terminate the app.
+- The energy consumption can be adjusted dynamically by changing properties like the scan interval.
+- Messages can be saved persistently and postprocessed at a later time. The scan log is saved in an energy efficient way.
+- Messages logged over a long period of time can be transformed to status reports and periodically sent to a mesh management system.
+- Advertising arbitrary data and BlueRange specific messages in foreground and background mode.
 
 ## Example
 In order to start scanning you only need to get the singleton instance of the ```BeaconScanner``` class, pass a ```BeaconScannerConfiguration``` object and call the ```startScanning``` method. To get informed about incoming beacon messages you have to pass the class object of a ```BeaconScannerListener```. Passing the class object is necessary to support background scanning after app termination.
