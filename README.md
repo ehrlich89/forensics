@@ -17,14 +17,14 @@ At the moment the BlueRange SDK provides the following features:
 - Advertising arbitrary data and BlueRange specific messages in foreground and background mode.
 
 ### Getting started
-- In order to write your own app, you you first need to unzip the "BlueRangeSDK_Android.zip".
-- Next, start the Android IDE which you want to develop with (e.g. Android Studio) and import the project that is contained in the unpacked folder. To do this in Android, just click on "Open an existing Android project" right after starting Android Studio and choose the unpacked folder.
-- After Android Studio has imported the project, just have a look at the project structure on the right.
+- In order to start with your own app, you first need to unzip the "BlueRangeSDK_Android.zip".
+- Next, start the Android IDE which you want to develop with (e.g. Android Studio) and import the project that is contained in the unpacked folder. To do this with Android Studio, just click on "Open an existing Android project" right after starting the application and choose the unpacked folder.
+- After the project has been imported, just have a look at the project structure on the left side bar.
 - As you can see the "com.mway.bluerange.android" contains two subpackages called "examples" and "sdk".
-- The "sdk" package contains the SDK's source code. So if you are interested in how we implemented the SDK components, you can have a closer look the inner packages.
-- In the "com.mway.bluerange.android.examples" package you can see how the SDK components can be used in the app's source code. The "systemtests" package contains some examples of how background scanning and advertising services can be started.
-- The package "nearyou" contains an example app that can be started if you have a Bluetooth Low Energy capable device. In order to start the app, you only need to build, deploy and start the application. If you are using Android Studio, you can simply use the keyboard shortcut "Shift+F10". On your Android device you should see the example app listing all Beacon messages (iBeacons, Relution Tag messages and JoinMeMessages) that are currently received as specified in the ```BeaconScanService``` class.
-- The best way to start writing your own app would be to start with the NearYou app and modify the classes contained in the corresponding ```nearyou``` folder.
+- The "sdk" package contains the SDK's source code. So if you are interested in how we implemented the SDK components, you should have a closer look at the packages contained inside.
+- In the "com.mway.bluerange.android.examples" package you can see how the SDK components can be used within your app code. The "systemtests" package contains some examples, of how the background scanning and advertising services contained in the SDK can be started.
+- The package "nearyou" contains an example app that shows the beacon messages that the device currently receives. You can test the app app, if you have a Bluetooth Low Energy capable device. In order to start the app, you only need to build, deploy and start the application. If you are using Android Studio, you can simply use the keyboard shortcut "Shift+F10". The build process should take a while beacause our build management tool needs to resolve all dependencies. After the app has been build and deployed you should see the example app on your device listing all Beacon messages (iBeacons, Relution Tag messages and JoinMeMessages) that are currently received an conform to the beacon format as specified in the ```BeaconScanService``` class.
+- The best way to start writing your own app would be to start with the NearYou app and modify the respective classes.
 
 
 ## Scanning and advertising
