@@ -17,78 +17,41 @@ The library is still in an early development phase. Currently supported features
 ## Example
 In order to start scanning you only need to get the singleton instance of the ```BeaconScanner``` class, pass a ```BeaconScannerConfiguration``` object and call the ```startScanning``` method. To get informed about incoming beacon messages you have to pass the class object of a ```BeaconScannerListener```. Passing the class object is necessary to support background scanning after app termination.
 ```java
-private void testScanning() {
-      try {
-          BeaconScanner beaconScanner = BeaconScanner.getInstance(this);
-          BeaconScannerConfig config = new BeaconScannerConfig();
-          config.scanIBeacon("b9407f30-f5f8-466e-aff9-25556b57fe6d", 45, 1);
-          config.scanIBeacon("c9407f30-f5f8-466e-aff9-25556b57fe6d", 46, 2);
-          config.scanRelutionTags(new long[]{13, 2});
-          config.setBackgroundMode(true);
-          config.setLoggingEnabled(true);
-          beaconScanner.startScanning(config, MyBeaconScannerListener.class);
-      } catch (BluetoothDisabledException e) {
-          e.printStackTrace();
-      }
-  }
-```
-
-The handler methods ```onMeshActive```, ```onMeshInactive``` and ```onBeaconUpdate``` of the ```BeaconScannerListener``` are called by the scanner's background service even if the user tries to terminate the app.
-```java
-public class MyBeaconScannerListener implements BeaconScannerListener {
-
-    private BeaconAdvertiser beaconAdvertiser;
-
+public class ScannerApplication extends BlueRangeService {
     @Override
-    public void onMeshActive(Context context) {
-        Log.d(Config.projectName, "onMeshActive");
-    }
-
-    @Override
-    public void onMeshInactive(Context context) {
-        Log.d(Config.projectName, "onMeshInactive");
-    }
-
-    @Override
-    public void onBeaconUpdate(Context context, List<BeaconMessage> beaconMessages) {
-        Log.d(Config.projectName, "onBeaconUpdate");
-
-        for (BeaconMessage beaconMessage : beaconMessages) {
-            Beacon beacon = beaconMessage.getBeacon();
-            Region region = beaconMessage.getRegion();
-            if (beaconMessage.getType().equals("IBeaconMessage")) {
-                handleIBeaconMessage(beaconMessage);
-            } else if (beaconMessage.getType().equals("RelutionTagMessageV1")) {
-                handleRelutionTagMessage(beaconMessage);
+    public void onStarted() {
+        final BeaconScanner beaconScanner = new BeaconScanner(this);
+        final BeaconScannerConfig config = new BeaconScannerConfig();
+        config.scanIBeacon("b9407f30-f5f8-466e-aff9-25556b57fe6d", 45, 1);
+        config.scanIBeacon("c9407f30-f5f8-466e-aff9-25556b57fe6d", 46, 2);
+        config.scanRelutionTags(new long[]{13, 2});
+        config.scanJoinMeMessage();
+        beaconScanner.setConfiguration(config);
+        beaconScanner.addListener(new BeaconScannerListener() {
+            @Override
+            public void onMeshActive() {
+                Log.d(Config.projectName, "onMeshActive");
             }
-        }
-    }
-    
-    private void handleIBeaconMessage(BeaconMessage beaconMessage) {
-        IBeaconMessage message = (IBeaconMessage) beaconMessage;
-        UUID uuid = message.getUUID();
-        int major = message.getMajor();
-        int minor = message.getMinor();
-        Log.d("BeaconMessage", "iBeacon: UUID = " + uuid + ", major = " + major + ", minor = " + minor);
-    }
 
-    private void handleRelutionTagMessage(BeaconMessage beaconMessage) {
-        RelutionTagMessage message = (RelutionTagMessage) beaconMessage;
-        List<Long> relutionTags = message.getTags();
-        String outputString = "RelutionTagMessageV1: tags = ";
-        for (int i = 0;i < relutionTags.size();i++) {
-            if (i != 0) {
-                outputString += ", ";
+            @Override
+            public void onMeshInactive() {
+                Log.d(Config.projectName, "onMeshInactive");
             }
-            outputString += relutionTags.get(i);
-        }
-        outputString += ", txPower = " + beaconMessage.getTxPower();
-        Log.d("BeaconMessage", outputString);
-    }
 
-    @Override
-    public void onError(Context context) {
-        Log.d(Config.projectName, "onError");
+            @Override
+            public void onBeaconUpdate(List<BeaconMessage> beaconMessages) {
+                Log.d(Config.projectName, "onBeaconUpdate");
+                for (BeaconMessage beaconMessage : beaconMessages) {
+                    Log.d("BeaconMessage", beaconMessage.toString());
+                }
+            }
+
+            @Override
+            public void onError() {
+
+            }
+        });
+        beaconScanner.startScanning();
     }
 }
 ```
