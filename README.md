@@ -9,6 +9,10 @@ The library is still in an early development phase. Currently supported features
 ### Scanning
 In order to start scanning you only need to get the singleton instance of the ```BeaconScanner``` class, pass a ```BeaconScannerConfig``` object and call the ```startScanning``` method. To get informed about incoming beacon messages you have to pass a ```BeaconScannerListener``` object to the scanner.
 ```objective-c
+#import "BeaconScanner.h"
+#import "BeaconScannerConfig.h"
+#import "MyBeaconScannerListener.h"
+
 BeaconScanner *beaconScanner = [BeaconScanner getInstance];
     BeaconScannerConfig *config = [[BeaconScannerConfig alloc] init];
     [config scanIBeacon:@"b9407f30-f5f8-466e-aff9-25556b57fe6d" major:45 minor:1];
@@ -70,6 +74,8 @@ The handler methods ```onMeshActive```, ```onMeshInactive``` and ```onBeaconUpda
 ### Advertising
 The BlueRange SDK also supports broadcasting Bluetooth Low Energy advertising messages. To do that, you must include the UIBackgroundModes key with the bluetooth-peripheral value in the app's Info.plist. However, as described in the [Core Bluetooth Programming Guide](https://developer.apple.com/library/ios/documentation/NetworkingInternetWeb/Conceptual/CoreBluetooth_concepts/CoreBluetoothBackgroundProcessingForIOSApps/PerformingTasksWhileYourAppIsInTheBackground.html) it is only allowed to send a list of Service UUIDs. To send advertising messages containing a list of service UUIDs, create an instance of the ```BeaconAdvertiser``` class and call the ```startAdvertisingWithServiceUUIDs```.
 ```objective-c
+#import "BeaconAdvertiser.h"
+
 - (void) testAdvertising
 {
     self.beaconAdvertiser = [[BeaconAdvertiser alloc] init];
