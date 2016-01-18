@@ -16,7 +16,18 @@ At the moment the BlueRange SDK provides the following features:
 ### Advertising
 - Advertising arbitrary data and BlueRange specific messages in foreground and background mode.
 
-## Example
+### Getting started
+- In order to write your own app, you you first need to unzip the "BlueRangeSDK_Android.zip".
+- Next, start the Android IDE which you want to develop with (e.g. Android Studio) and import the project that is contained in the unpacked folder. To do this in Android, just click on "Open an existing Android project" right after starting Android Studio and choose the unpacked folder.
+- After Android Studio has imported the project, just have a look at the project structure on the right.
+- As you can see the "com.mway.bluerange.android" contains two subpackages called "examples" and "sdk".
+- The "sdk" package contains the SDK's source code. So if you are interested in how we implemented the SDK components, you can have a closer look the inner packages.
+- In the "com.mway.bluerange.android.examples" package you can see how the SDK components can be used in the app's source code. The "systemtests" package contains some examples of how background scanning and advertising services can be started.
+- The package "nearyou" contains an example app that can be started if you have a Bluetooth Low Energy capable device. In order to start the app, you only need to build, deploy and start the application. If you are using Android Studio, you can simply use the keyboard shortcut "Shift+F10". On your Android device you should see the example app listing all Beacon messages (iBeacons, Relution Tag messages and JoinMeMessages) that are currently received as specified in the ```BeaconScanService``` class.
+- If you want to experiment with the SDK
+
+
+## Scanning and advertising
 ### Scanning beacon messages
 In order to start scanning, you must create a class that inherits the ```BlueRangeService``` class. In the ```onStarted``` method
 you can instantiate the beacon scanner and configure it, as shown below.
