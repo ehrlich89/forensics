@@ -67,3 +67,18 @@ private void testScanning() {
 ```
 
 ### Advertising
+To advertise periodically, you just need to define another ```BlueRange``` service that starts advertising using a ```BeaconAdvertiser```:
+```java
+public class AdvertisingService extends BlueRangeService {
+    @Override
+    public void onStarted() {
+        try {
+            BeaconAdvertiser advertiser = new BeaconAdvertiser(this.getApplicationContext());
+            advertiser.startAdvertisingDiscoveryMessage();
+        } catch (PeripheralAdvertisingNotSupportedException e) {
+            Log.d("Advertiser", "This device does not support advertising in peripheral mode!");
+            e.printStackTrace();
+        }
+    }
+}
+```
