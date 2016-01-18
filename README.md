@@ -6,6 +6,7 @@ The library is still in an early development phase. Currently supported features
 - Advertising arbitrary service UUIDs.
 
 ## Example
+### Scanning
 In order to start scanning you only need to get the singleton instance of the ```BeaconScanner``` class, pass a ```BeaconScannerConfig``` object and call the ```startScanning``` method. To get informed about incoming beacon messages you have to pass a ```BeaconScannerListener``` object to the scanner.
 ```objective-c
 BeaconScanner *beaconScanner = [BeaconScanner getInstance];
@@ -65,4 +66,14 @@ The handler methods ```onMeshActive```, ```onMeshInactive``` and ```onBeaconUpda
 }
 
 @end
+```
+### Advertising
+```objective-c
+- (void) testAdvertising
+{
+    self.beaconAdvertiser = [[BeaconAdvertiser alloc] init];
+    [self.beaconAdvertiser startAdvertisingForegroundDiscoveryMessage:@[
+        @"EB6D9E77-6FA9-47A4-8174-889846FF9EAD",
+        @"DB6D9E77-6FA9-47A4-8174-889846FF9EAD"]];
+}
 ```
