@@ -3,7 +3,7 @@
 "BlueRange SDK for iOS" is an iOS SDK providing an API to develop applications that interact with BlueRange mesh beacons. The API is intended to provide an easy to use interface to develop time and location based applications that make use of a BlueRange mesh. For more information about BlueRange have a look at this project on github.
 
 ## Features
-The library is still in an early development phase. Currently supported features in the SDK for iOS are:
+The SDK is still in an early development phase. Currently the BlueRange SDK supports Android 6.0 Marshmallow and iOS 8.0 devices. However, to enable advertising, Android devices must additionally support the Bluetooth LE peripheral mode. Currently supported features in the SDK for iOS are:
 - Scanning iBeacon messages in foreground and background and Relution Tag messages (RelutionTagMessageV1) in foreground mode.
 - Advertising arbitrary service UUIDs.
 
@@ -13,6 +13,8 @@ The library is still in an early development phase. Currently supported features
 - After the project has been imported, just have a look at the project structure on the left side bar.
 - As you can see, the "sdk" folder contains two subfolders called "examples" and "sdk".
 - The "sdk" package contains the SDK's source code. So if you are interested in how we implemented the SDK components, you should have a closer look at the packages contained inside.
+- In the "examples" folder you can see, how the SDK components can be used within your app code. The ```ExampleApplication```class contains some basic examples, of how the background scanning and advertising services can be started.
+- The folder "nearyou" contains an example app displaying the beacon messages the device currently receives. You can test the app, if you have an iOS 8.0 device. In order to start the app, you only need to build, deploy and start the application. If you are using Android Studio, you can simply use the keyboard shortcut "Shift+F10". The build process should take a while because our build management tool needs to resolve all dependencies including external libraries. After the app has been build and deployed you should see the example app on your device listing all currently received messages (iBeacons, Relution Tag messages and JoinMeMessages) conforming the beacon format that is specified in the BeaconScanService class.
 
 ## Example
 In the following section we show you, how to define a service that runs in background and listens to a specified set of beacons.
