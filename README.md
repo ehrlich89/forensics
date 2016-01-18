@@ -1,5 +1,5 @@
-# BlueRange iOS SDK
-An iOS SDK providing an API to develop applications that interact with BlueRange mesh beacons. The API is intended to provide an easy to use interface to develop time and location based applications that make use of a BlueRange mesh. For more information about BlueRange have a look at this project on github.
+# BlueRange SDK for iOS
+"BlueRange SDK for iOS" is an iOS SDK providing an API to develop applications that interact with BlueRange mesh beacons. The API is intended to provide an easy to use interface to develop time and location based applications that make use of a BlueRange mesh. For more information about BlueRange have a look at this project on github.
 
 The library is still in an early development phase. Currently supported features in the SDK for iOS are:
 - Scanning iBeacon messages in foreground and background and Relution Tag messages (RelutionTagMessageV1) in foreground mode.
