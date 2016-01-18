@@ -18,7 +18,7 @@ At the moment the BlueRange SDK provides the following features:
 
 ### Getting started
 - In order to start with your own app, first you need to unzip the "BlueRangeSDK_Android.zip".
-- Next, start the Android IDE which you want to develop with (e.g. Android Studio) and import the project that is contained in the unpacked folder. To do this with Android Studio, just click on "Open an existing Android project" right after starting the application and choose the unpacked folder.
+- Next, start the Android IDE which you want to develop with (e.g. Android Studio) and import the project that is contained in the unpacked folder. To do this with Android Studio, just click on "Open an existing Android project" right after Android Studio has started and choose the unpacked folder.
 - After the project has been imported, just have a look at the project structure on the left side bar.
 - As you can see the "com.mway.bluerange.android" contains two subpackages called "examples" and "sdk".
 - The "sdk" package contains the SDK's source code. So if you are interested in how we implemented the SDK components, you should have a closer look at the packages contained inside.
