@@ -2,8 +2,8 @@
 An iOS SDK providing an API to develop applications that interact with BlueRange mesh beacons. The API is intended to provide an easy to use interface to develop time and location based applications that make use of a BlueRange mesh. For more information about BlueRange have a look at this project on github.
 
 The library is still in an early development phase. Currently supported features are:
-- Scanning for iBeacon messages in foreground and background and Relution Tag messages (RelutionTagMessageV1) in foreground mode.
-- Advertising arbitrary UUIDs.
+- Scanning iBeacon messages in foreground and background and Relution Tag messages (RelutionTagMessageV1) in foreground mode.
+- Advertising arbitrary service UUIDs.
 
 ## Example
 In order to start scanning you only need to get the singleton instance of the ```BeaconScanner``` class, pass a ```BeaconScannerConfig``` object and call the ```startScanning``` method. To get informed about incoming beacon messages you have to pass a ```BeaconScannerListener``` object.
