@@ -16,8 +16,11 @@ The library is still in an early development phase. Currently supported features
 
 ## Example
 In order to start scanning you only need to get the singleton instance of the ```BeaconScanner``` class, pass a ```BeaconScannerConfiguration``` object and call the ```startScanning``` method. To get informed about incoming beacon messages you have to pass the class object of a ```BeaconScannerListener```. Passing the class object is necessary to support background scanning after app termination.
+
+In order to start scanning, you must create a class that inherits the ```BlueRangeService``` class. In the ```onStarted``` method
+you can instantiate the beacon scanner and configure it, as shown below.
 ```java
-public class ScannerApplication extends BlueRangeService {
+public class ScanService extends BlueRangeService {
     @Override
     public void onStarted() {
         final BeaconScanner beaconScanner = new BeaconScanner(this);
@@ -56,9 +59,10 @@ public class ScannerApplication extends BlueRangeService {
 }
 ```
 
+To start the scanner in foreground or in background mode, just call the appropriate method in an area, where you have access to an Android ```Context```.
 ```java
 private void testScanning() {
-    new ScannerApplication().startInForegroundMode(getApplicationContext());
-    //new ScannerApplication().startInBackgroundMode(getApplicationContext());
+    new ScanService().startInForegroundMode(getApplicationContext());
+    //new ScanService().startInBackgroundMode(getApplicationContext());
 }
 ```
