@@ -15,8 +15,7 @@ The library is still in an early development phase. Currently supported features
 - Advertising arbitrary data and BlueRange specific messages in foreground and background mode.
 
 ## Example
-In order to start scanning you only need to get the singleton instance of the ```BeaconScanner``` class, pass a ```BeaconScannerConfiguration``` object and call the ```startScanning``` method. To get informed about incoming beacon messages you have to pass the class object of a ```BeaconScannerListener```. Passing the class object is necessary to support background scanning after app termination.
-
+### Scanning beacon messages
 In order to start scanning, you must create a class that inherits the ```BlueRangeService``` class. In the ```onStarted``` method
 you can instantiate the beacon scanner and configure it, as shown below.
 ```java
@@ -66,3 +65,5 @@ private void testScanning() {
     //new ScanService().startInBackgroundMode(getApplicationContext());
 }
 ```
+
+### Advertising
