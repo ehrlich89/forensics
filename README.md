@@ -68,11 +68,12 @@ The handler methods ```onMeshActive```, ```onMeshInactive``` and ```onBeaconUpda
 @end
 ```
 ### Advertising
+The BlueRange SDK also supports broadcasting Bluetooth Low Energy advertising messages. 
 ```objective-c
 - (void) testAdvertising
 {
     self.beaconAdvertiser = [[BeaconAdvertiser alloc] init];
-    [self.beaconAdvertiser startAdvertisingForegroundDiscoveryMessage:@[
+    [self.beaconAdvertiser startAdvertisingWithServiceUUIDs:@[
         @"EB6D9E77-6FA9-47A4-8174-889846FF9EAD",
         @"DB6D9E77-6FA9-47A4-8174-889846FF9EAD"]];
 }
