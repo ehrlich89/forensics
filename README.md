@@ -7,6 +7,8 @@ The library is still in an early development phase. Currently supported features
 - Scanning iBeacon messages in foreground and background and Relution Tag messages (RelutionTagMessageV1) in foreground mode.
 - Advertising arbitrary service UUIDs.
 
+## Getting started
+
 ## Example
 In the following section we show you, how to define a service that runs in background and listens to a specified set of beacons.
 ### Scanning
