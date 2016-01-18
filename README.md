@@ -48,16 +48,16 @@ The handler methods ```onMeshActive```, ```onMeshInactive``` and ```onBeaconUpda
 
 - (void) onMeshActive
 {
-NSLog(@"onMeshActive");
+  NSLog(@"onMeshActive");
 }
 
 - (void) onBeaconUpdate: (id<BeaconMessage>) beaconMessage
 {
-if ([[beaconMessage getType] isEqualToString:@"IBeaconMessage"]) {
-[self handleIBeaconMessage: (IBeaconMessage*)beaconMessage];
-} else if ([[beaconMessage getType] isEqualToString:@"RelutionTagMessageV1"]) {
-[self handleRelutionTagMessage: (RelutionTagMessage*)beaconMessage];
-}
+  if ([[beaconMessage getType] isEqualToString:@"IBeaconMessage"]) {
+    [self handleIBeaconMessage: (IBeaconMessage*)beaconMessage];
+  } else if ([[beaconMessage getType] isEqualToString:@"RelutionTagMessageV1"]) {
+    [self handleRelutionTagMessage: (RelutionTagMessage*)beaconMessage];
+  }
 }
 
 - (void) handleIBeaconMessage: (IBeaconMessage*) beaconMessage
@@ -70,22 +70,22 @@ NSLog(@"iBeacon: UUID = %@, major = %d, minor = %d", uuid, major, minor);
 
 - (void) handleRelutionTagMessage: (RelutionTagMessage*) beaconMessage
 {
-NSArray* tags = beaconMessage.tags;
-NSMutableString *outputString = [[NSMutableString alloc] initWithString:@"RelutionTagMessageV1: tags = "];
-for (int i = 0; i < [tags count];i++) {
-if (i != 0) {
-[outputString appendString:@", "];
-}
-[outputString appendString:[tags[i] stringValue]];
-}
-[outputString appendString:@", txPower = "];
-[outputString appendFormat:@"%d", beaconMessage.txPower];
-NSLog(@"%@", outputString);
+  NSArray* tags = beaconMessage.tags;
+  NSMutableString *outputString = [[NSMutableString alloc] initWithString:@"RelutionTagMessageV1: tags = "];
+  for (int i = 0; i < [tags count];i++) {
+    if (i != 0) {
+      [outputString appendString:@", "];
+    }
+    [outputString appendString:[tags[i] stringValue]];
+  }
+  [outputString appendString:@", txPower = "];
+  [outputString appendFormat:@"%d", beaconMessage.txPower];
+  NSLog(@"%@", outputString);
 }
 
 - (void) onMeshInactive
 {
-NSLog(@"onMeshInactive");
+  NSLog(@"onMeshInactive");
 }
 
 @end
@@ -97,9 +97,9 @@ The BlueRange SDK also supports broadcasting Bluetooth Low Energy advertising me
 
 - (void) testAdvertising
 {
-self.beaconAdvertiser = [[BeaconAdvertiser alloc] init];
-[self.beaconAdvertiser startAdvertisingWithServiceUUIDs:@[
-@"EB6D9E77-6FA9-47A4-8174-889846FF9EAD",
-@"DB6D9E77-6FA9-47A4-8174-889846FF9EAD"]];
+  self.beaconAdvertiser = [[BeaconAdvertiser alloc] init];
+  [self.beaconAdvertiser startAdvertisingWithServiceUUIDs:@[
+    @"EB6D9E77-6FA9-47A4-8174-889846FF9EAD",
+    @"DB6D9E77-6FA9-47A4-8174-889846FF9EAD"]];
 }
 ```
