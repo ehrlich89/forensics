@@ -28,6 +28,7 @@ At the moment the BlueRange SDK provides the following features:
 
 
 ## Scanning and advertising
+In the following section we show you, how to define a service that runs in background and listens to a specified set of beacons.
 ### Scanning beacon messages
 In order to start scanning, you must create a class that inherits the ```BlueRangeService``` class. In the ```onStarted``` method
 you can instantiate the beacon scanner and configure it, as shown below.
