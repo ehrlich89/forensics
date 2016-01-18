@@ -6,7 +6,7 @@ The library is still in an early development phase. Currently supported features
 - Advertising arbitrary service UUIDs.
 
 ## Example
-In order to start scanning you only need to get the singleton instance of the ```BeaconScanner``` class, pass a ```BeaconScannerConfig``` object and call the ```startScanning``` method. To get informed about incoming beacon messages you have to pass a ```BeaconScannerListener``` object.
+In order to start scanning you only need to get the singleton instance of the ```BeaconScanner``` class, pass a ```BeaconScannerConfig``` object and call the ```startScanning``` method. To get informed about incoming beacon messages you have to pass a ```BeaconScannerListener``` object to the scanner.
 ```objective-c
 BeaconScanner *beaconScanner = [BeaconScanner getInstance];
     BeaconScannerConfig *config = [[BeaconScannerConfig alloc] init];
