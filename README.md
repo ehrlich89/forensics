@@ -8,6 +8,7 @@ The library is still in an early development phase. Currently supported features
 - Advertising arbitrary service UUIDs.
 
 ## Example
+In the following section we show you, how to define a service that runs in background and listens to a specified set of beacons.
 ### Scanning
 In order to start scanning mesh beacons, you only need to get the singleton instance of the ```BeaconScanner``` class, pass a ```BeaconScannerConfig``` object and call the ```startScanning``` method. To get informed about incoming beacon messages you have to pass a ```BeaconScannerListener``` object to the scanner.
 ```objective-c
