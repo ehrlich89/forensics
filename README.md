@@ -1,4 +1,5 @@
 # BlueRange SDK for Android
+## What does this SDK do?
 An Android SDK providing an API to develop applications that interact with BlueRange mesh beacons. The API is intended to provide an easy to use interface for the development of time and location based applications that make use of BlueRange meshes. For more information about BlueRange have a look at this project on github.
 
 ## Features
