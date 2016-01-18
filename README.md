@@ -55,3 +55,10 @@ public class ScannerApplication extends BlueRangeService {
     }
 }
 ```
+
+```java
+private void testScanning() {
+    new ScannerApplication().startInForegroundMode(getApplicationContext());
+    //new ScannerApplication().startInBackgroundMode(getApplicationContext());
+}
+```
