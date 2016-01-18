@@ -68,7 +68,7 @@ The handler methods ```onMeshActive```, ```onMeshInactive``` and ```onBeaconUpda
 @end
 ```
 ### Advertising
-The BlueRange SDK also supports broadcasting Bluetooth Low Energy advertising messages. 
+The BlueRange SDK also supports broadcasting Bluetooth Low Energy advertising messages. To do that, you must include the UIBackgroundModes key with the bluetooth-peripheral value in the app's Info.plist. However, as described in the [Core Bluetooth Programming Guide](https://developer.apple.com/library/ios/documentation/NetworkingInternetWeb/Conceptual/CoreBluetooth_concepts/CoreBluetoothBackgroundProcessingForIOSApps/PerformingTasksWhileYourAppIsInTheBackground.html) it is only allowed to send a list of Service UUIDs.
 ```objective-c
 - (void) testAdvertising
 {
