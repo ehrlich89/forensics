@@ -1,6 +1,6 @@
 # BlueRange SDK for Android
 ## What does this SDK do?
-"BlueRange SDK for Android" is an Android library providing an API to develop applications that interact with Bluetooth Low Energy beacons in general and BlueRange SmartBeacons in specific. The API is intended to provide an easy to use interface for the development of time and location based applications that make use of BlueRange mesh networks. For more information about the BlueRange technology, have a look at this project on github.
+"BlueRange SDK for Android" is an Android library providing an API to develop applications that interact with Bluetooth Low Energy beacons in general and BlueRange SmartBeacons in specific. The API is intended to provide an easy to use interface to develop time and location based applications that make use of BlueRange mesh networks. For more information about the BlueRange technology, have a look at this project on github.
 
 ## Features
 Currently the BlueRange SDK supports Android 6.0 Marshmallow and iOS 8.0 devices. However, to enable advertising, Android devices must additionally support the Bluetooth LE peripheral mode.
