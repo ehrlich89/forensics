@@ -16,7 +16,13 @@ At the moment the BlueRange SDK provides the following features:
 ### Advertising
 - Advertising arbitrary data and BlueRange specific messages in foreground and background mode.
 
-### Getting started
+## Supported devices
+
+## Documentation
+
+## License
+
+## Getting started
 - In order to start with your own app, first you need to unzip the "BlueRangeSDK_Android.zip".
 - Next, start the Android IDE which you want to develop with (e.g. Android Studio) and import the project that is contained in the unpacked folder. To do this with Android Studio, just click on "Open an existing Android project" right after Android Studio has started and choose the unpacked folder.
 - After the project has been imported, just have a look at the project structure on the left side bar.
@@ -26,8 +32,9 @@ At the moment the BlueRange SDK provides the following features:
 - The package "nearyou" contains an example app displaying the beacon messages that the device currently receives. You can test the app, if you have a Bluetooth Low Energy capable device. In order to start the app, you only need to build, deploy and start the application. If you are using Android Studio, you can simply use the keyboard shortcut "Shift+F10". The build process should take a while because our build management tool needs to resolve all dependencies including external libraries. After the app has been build and deployed you should see the example app on your device listing all currently received messages (iBeacons, Relution Tag messages and JoinMeMessages) conforming the beacon format that is specified in the ```BeaconScanService``` class.
 - The best way to start writing your own app would be to start with the NearYou app and modify the respective classes.
 
+## Reference application
 
-## Scanning and advertising
+## Sample code
 In the following section we show you, how to define a service that runs in background and listens to a specified set of beacons.
 ### Scanning beacon messages
 In order to start scanning, you must create a class that inherits the ```BlueRangeService``` class. In the ```onStarted``` method
@@ -96,3 +103,5 @@ public class AdvertisingService extends BlueRangeService {
     }
 }
 ```
+
+## Topics
