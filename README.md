@@ -86,10 +86,62 @@ RelutionIoTService.addBeaconMessageObserver(new RelutionIoTService.BeaconMessage
 ```
 
 ### iBeacon Calibration
+To calibrate an iBeacon inside your app (like in the reference application), just place your device 1 meter away from the beacon
+and deliver an averaged RSSI to the Relution server by calling the ```calibrateIBeacon``` method, as shown below:
+```java
+RelutionIoTService.addBeaconMessageObserver(new RelutionIoTService.BeaconMessageObserver() {
+	@Override
+	public void onMessageReceived(BeaconMessage message) {
+		// Do something with the message.
+		if (message instanceof IBeaconMessage) {
+			// Get the iBeacon message.
+			IBeaconMessage iBeaconMessage = (IBeaconMessage) message;
+			// User moves to a place 1 meter away from the beacon that sends the iBeacon message...
+			// Calibrate the iBeacon message.
+			RelutionIoTService.calibrateIBeacon(iBeaconMessage.getIBeacon(), iBeaconMessage.getRssi());
+		}
+	}
+});
+```
 
-### Campaign actions
+### Beacon actions
+If actions have been assigned to beacons inside a campaign, your app should handle these actions by registering observers for each specific type of action:
+```java
+RelutionIoTService.addBeaconNotificationActionObserver(new RelutionIoTService.BeaconNotificationActionObserver() {
+	@Override
+	public void onNotificationActionExecuted(BeaconNotificationAction notificationAction) {
+		// Do something...
+	}
+});
+RelutionIoTService.addBeaconContentActionObserver(new RelutionIoTService.BeaconContentActionObserver() {
+	@Override
+	public void onContentActionExecuted(BeaconContentAction contentAction) {
+		// Do something...
+	}
+});
+RelutionIoTService.addBeaconTagActionObserver(new RelutionIoTService.BeaconTagActionObserver() {
+	@Override
+	public void onTagActionExecuted(BeaconTagAction tagAction) {
+		// Do something...
+	}
+});
+```
 
 ### Relution tags
+If you want to implement your app based on Relution Tags, just register an observer to get informed about the tags. If the name or description of the tags is important, you can obtain these informations by calling the ```getTagInfoForTag``` method:
+
+```java
+RelutionIoTService.addRelutionTagObserver(new RelutionIoTService.RelutionTagObserver() {
+	@Override
+	public void onTagReceived(long tag, RelutionTagMessage message) {
+		try {
+			RelutionIoTService.getTagInfoForTag(tag);
+		} catch (RelutionTagInfoRegistry.RelutionTagInfoRegistryNoInfoFound relutionTagInfoRegistryNoInfoFound) {
+			// ...
+		}
+	}
+});
+```
 
 In the following section we show you, how to define a service that runs in background and listens to a specified set of beacons.
 ### Scanning beacon messages
