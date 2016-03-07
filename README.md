@@ -45,7 +45,7 @@ As mentioned above, the service layer builds on top of the core layer and provid
 - The "sdk" package consists of the SDK's source code. So if you are interested in how the SDK components are implemented, you should have a closer look at these packages.
 - In the "examples" package you can see how the SDK components can be used within your app. The "systemtests" package contains code examples that show you, how to use the SDK's core components.
 - The "nearyou" package contains a reference application displaying the currently received beacon messages and the executed actions. You can test the app, if you have a Bluetooth Low Energy capable device. In order to start the app, you only need to build, deploy and start the application. If you are using Android Studio, you can simply use the keyboard shortcut "Shift+F10".
-- The best way to start writing your own app would be to replace all classes of the NearYou app and replace and transform the code to your own needs.
+- The best way to start writing your own app would be to replace all classes of the NearYou app and transform the code to your own needs.
 
 ## Reference application
 
