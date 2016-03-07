@@ -32,7 +32,7 @@ As mentioned above, the service layer builds on top of the core layer and provid
 - It is possible to periodically send specific advertising messages to generate data, that can be used to display a heatmap on the Relution SmartBeacon management platform.
 
 ## Documentation
-- 
+- All currently supported features are condensed in the RelutionIoTService class. However, if you want more flexibility, you can build your app on top of the classes contained inside the core and service packages. To get an overview of the classes, please have a look at the documentation [LINK].
 
 ## Getting started
 - In order to get started with your own app, first you need to unzip the "BlueRangeSDK_Android.zip".
@@ -115,5 +115,3 @@ public class AdvertisingService extends BlueRangeService {
     }
 }
 ```
-
-## Topics
