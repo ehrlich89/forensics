@@ -85,7 +85,7 @@ RelutionIoTService.addBeaconMessageObserver(new RelutionIoTService.BeaconMessage
 });
 ```
 
-### iBeacon Calibration
+### iBeacon calibration
 To calibrate an iBeacon inside your app (like in the reference application), just place your device 1 meter away from the beacon
 and deliver an averaged RSSI to the Relution server by calling the ```calibrateIBeacon``` method, as shown below:
 ```java
@@ -143,60 +143,41 @@ RelutionIoTService.addRelutionTagObserver(new RelutionIoTService.RelutionTagObse
 });
 ```
 
-In the following section we show you, how to define a service that runs in background and listens to a specified set of beacons.
-### Scanning beacon messages
-In order to start scanning, you must create a class that inherits the ```BlueRangeService``` class. In the ```onStarted``` method
-you can instantiate the beacon scanner and configure it, as shown below.
+### Scanning
+If you just want to scan for specific beacon messages, you can create an instance of the ```BeaconMessageScanner``` class,
+configure it and register a ```BeaconMessageStreamNodeReceiver``` to get informed about the incoming messages: 
+
 ```java
-public class ScanService extends BlueRangeService {
-    @Override
-    public void onStarted() {
-        final BeaconScanner beaconScanner = new BeaconScanner(this);
-        final BeaconScannerConfig config = new BeaconScannerConfig();
-        config.scanIBeacon("b9407f30-f5f8-466e-aff9-25556b57fe6d", 45, 1);
-        config.scanIBeacon("c9407f30-f5f8-466e-aff9-25556b57fe6d", 46, 2);
-        config.scanRelutionTags(new long[]{13, 2});
-        config.scanJoinMeMessage();
-        beaconScanner.setConfiguration(config);
-        beaconScanner.addListener(new BeaconScannerListener() {
-            @Override
-            public void onMeshActive() {
-                Log.d(Config.projectName, "onMeshActive");
-            }
+final BeaconMessageScanner beaconScanner = new BeaconMessageScanner(this);
+final BeaconMessageScannerConfig config = new BeaconMessageScannerConfig(beaconScanner);
+config.scanIBeacon("b9407f30-f5f8-466e-aff9-25556b57fe6d", 45, 1);
+config.scanIBeacon("c9407f30-f5f8-466e-aff9-25556b57fe6d", 46, 2);
+config.scanRelutionTags(new long[]{13, 2});
+config.scanJoinMeMessage();
+beaconScanner.setConfig(config);
+beaconScanner.addReceiver(new BeaconMessageStreamNodeReceiver() {
+	@Override
+	public void onMeshActive(BeaconMessageStreamNode senderNode) {
+		Log.d(Config.projectName, "onMeshActive");
+	}
 
-            @Override
-            public void onMeshInactive() {
-                Log.d(Config.projectName, "onMeshInactive");
-            }
+	@Override
+	public void onReceivedMessage(BeaconMessageStreamNode senderNode, BeaconMessage message) {
+		Log.d(Config.projectName, "onBeaconUpdate");
+		Log.d(Config.projectName, message.toString());
+	}
 
-            @Override
-            public void onBeaconUpdate(List<BeaconMessage> beaconMessages) {
-                Log.d(Config.projectName, "onBeaconUpdate");
-                for (BeaconMessage beaconMessage : beaconMessages) {
-                    Log.d("BeaconMessage", beaconMessage.toString());
-                }
-            }
-
-            @Override
-            public void onError() {
-
-            }
-        });
-        beaconScanner.startScanning();
-    }
-}
+	@Override
+	public void onMeshInactive(BeaconMessageStreamNode senderNode) {
+		Log.d(Config.projectName, "onMeshInactive");
+	}
+});
+beaconScanner.startScanning();
 ```
 
-To start the scanner in foreground or in background mode, just call the appropriate method in an area, where you have access to an Android ```Context```.
-```java
-private void testScanning() {
-    new ScanService().startInForegroundMode(getApplicationContext());
-    //new ScanService().startInBackgroundMode(getApplicationContext());
-}
-```
 
 ### Advertising
-To advertise periodically, you just need to define another ```BlueRange``` service that starts advertising using a ```BeaconAdvertiser```:
+To periodically send advertising messages, just use the ```BeaconAdvertiser``` class:
 ```java
 public class AdvertisingService extends BlueRangeService {
     @Override
