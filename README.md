@@ -25,27 +25,27 @@ At the moment the BlueRange SDK contains a core and a service layer. The core la
 - Messages logged over a long period of time can be transformed to status reports and periodically sent to a mesh management system like the Relution SmartBeacon management system.
 
 #### Triggering
-- A stream of beacon messages can trigger an action which will be executed based on different time and location based parameters. Actions can e.g. be exectuted after a predefined delay or locked for a specific time. Moreover, actions can be defined to trigger only inside a certain distance range from the beacon or can have a validation period.
-- To make the execution of distance dependent actions more stable, the received signal strength of beacon messages is averaged by using a linearly weighted moving average filter.
+- A stream of beacon messages can trigger an action which will be executed based on different time and location based parameters. Actions can e.g. be exectuted after a predefined delay or locked for a specific time. Moreover, actions can be defined to trigger only inside a certain range to the beacon or can have a validation period.
+- To make the execution of distance dependent actions more stable, the messages' received signal strength is averaged over time by using a linearly weighted moving average filter.
 
 ### Service
-As mentioned above, the service layer builds on top of the core layer and provides some high level features that make use of the Relution platform.
-- iBeacon messages can be calibrated to improve the precision of distance dependent actions.
-- Relution Tags can be mapped to their names and description.
-- It is possible to periodically send specific advertising messages to generate data, that can be used to display a heatmap on the Relution SmartBeacon management platform.
+As mentioned above, the service layer builds on top of the core layer and provides some high level features to integrate the message processing components with the Relution SmartBeacon Management platform. Concretely, it enables you
+- to calibrate iBeacon messages to improve the precision of distance dependent actions.
+- to map Relution Tags to their names and descriptions which can be defined in the Relution platform.
+- to periodically send specific advertising messages, that will be used to display a heatmap on the Relution SmartBeacon management platform.
 
 ## Documentation
-- All currently supported features are condensed in the RelutionIoTService class. However, if you want more flexibility, you can build your app on top of the classes contained inside the core and service packages. To get an overview of the classes, please have a look at the documentation [LINK].
+- All currently supported features are bundled in a condensed form in the RelutionIoTService class. However, if you want more flexibility, you can build your app on top of the core and service components. To get an overview of the packages and classes, please have a look at the documentation [LINK].
 
 ## Getting started
 - In order to get started with your own app, you first need to unzip the "BlueRangeSDK_Android.zip".
 - Next, start the Android IDE of your choise (e.g. Android Studio) and import the project contained in the unpacked folder. To do this with Android Studio, just click on "Open an existing Android project" right after Android Studio has been started and choose the unpacked folder.
 - After the project has been imported, just have a look at the project structure on the left side bar.
-- As you can see the "com.mway.bluerange.android" package contains the two subpackages "examples" and "sdk".
+- As you can see, the "com.mway.bluerange.android" package contains two subpackages "examples" and "sdk".
 - The "sdk" package consists of the SDK's source code. So if you are interested in how the SDK components are implemented, you should have a closer look at these packages.
 - In the "examples" package you can see how the SDK components can be used within your app. The "systemtests" package contains code examples that show you, how to use the SDK's core components.
-- The "nearyou" package contains a reference application displaying the currently received beacon messages and an overview of the actions and when they will be executed. You can test the app, if you have a Bluetooth Low Energy capable device. In order to start the app, you only need to build, deploy and start the application. If you are using Android Studio, you can simply use the keyboard shortcut "Shift+F10".
-- The best way to start writing your own app would be to replace all classes of the NearYou app with your own code.
+- The "nearyou" package contains a reference application displaying the currently received beacon messages and the executed actions. You can test the app, if you have a Bluetooth Low Energy capable device. In order to start the app, you only need to build, deploy and start the application. If you are using Android Studio, you can simply use the keyboard shortcut "Shift+F10".
+- The best way to start writing your own app would be to replace all classes of the NearYou app and replace and transform the code to your own needs.
 
 ## Reference application
 
