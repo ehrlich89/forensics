@@ -1,4 +1,7 @@
 # BlueRange SDK for Android
+
+[Image]
+
 ## What does this SDK do?
 "BlueRange SDK for Android" is a library for the Android platform providing an API to develop applications that interact with Bluetooth Low Energy beacons in general and BlueRange SmartBeacons in specific. The API is intended to provide an easy to use interface to develop time and location based applications that make use of BlueRange mesh networks. For more information about the BlueRange technology, have a look at this project on github. The SDK also provides components to seamlessly integrate the mobile app into an environment based on the Enterprise Mobility Management platform Relution. The Relution SmartBeacon Management allows you to control and monitor a mesh of SmartBeacons and assign actions that will be triggered, when the mobile device detects beacons.
 
@@ -35,14 +38,14 @@ As mentioned above, the service layer builds on top of the core layer and provid
 - All currently supported features are condensed in the RelutionIoTService class. However, if you want more flexibility, you can build your app on top of the classes contained inside the core and service packages. To get an overview of the classes, please have a look at the documentation [LINK].
 
 ## Getting started
-- In order to get started with your own app, first you need to unzip the "BlueRangeSDK_Android.zip".
-- Next, start the Android IDE which you want to develop with (e.g. Android Studio) and import the project that is contained in the unpacked folder. To do this with Android Studio, just click on "Open an existing Android project" right after Android Studio has started and choose the unpacked folder.
+- In order to get started with your own app, you first need to unzip the "BlueRangeSDK_Android.zip".
+- Next, start the Android IDE of your choise (e.g. Android Studio) and import the project contained in the unpacked folder. To do this with Android Studio, just click on "Open an existing Android project" right after Android Studio has been started and choose the unpacked folder.
 - After the project has been imported, just have a look at the project structure on the left side bar.
-- As you can see the "com.mway.bluerange.android" contains two subpackages called "examples" and "sdk".
-- The "sdk" package contains the SDK's source code. So if you are interested in how we implemented the SDK components, you should have a closer look at the packages contained inside.
-- In the "examples" package you can see how the SDK components can be used within your app code. The "systemtests" package contains some examples, of how the background scanning and advertising services can be started.
-- The package "nearyou" contains an example app displaying the beacon messages that the device currently receives. You can test the app, if you have a Bluetooth Low Energy capable device. In order to start the app, you only need to build, deploy and start the application. If you are using Android Studio, you can simply use the keyboard shortcut "Shift+F10". The build process should take a while because our build management tool needs to resolve all dependencies including external libraries. After the app has been build and deployed you should see the example app on your device listing all currently received messages (iBeacons, Relution Tag messages and JoinMeMessages) conforming the beacon format that is specified in the ```BeaconScanService``` class.
-- The best way to start writing your own app would be to start with the NearYou app and modify the respective classes.
+- As you can see the "com.mway.bluerange.android" package contains the two subpackages "examples" and "sdk".
+- The "sdk" package consists of the SDK's source code. So if you are interested in how the SDK components are implemented, you should have a closer look at these packages.
+- In the "examples" package you can see how the SDK components can be used within your app. The "systemtests" package contains code examples that show you, how to use the SDK's core components.
+- The "nearyou" package contains a reference application displaying the currently received beacon messages and an overview of the actions and when they will be executed. You can test the app, if you have a Bluetooth Low Energy capable device. In order to start the app, you only need to build, deploy and start the application. If you are using Android Studio, you can simply use the keyboard shortcut "Shift+F10".
+- The best way to start writing your own app would be to replace all classes of the NearYou app with your own code.
 
 ## Reference application
 
