@@ -25,7 +25,7 @@ At the moment the BlueRange SDK contains a core and a service layer. The core la
 - Messages logged over a long period of time can be transformed to status reports and periodically sent to a mesh management system like the Relution SmartBeacon management system.
 
 #### Triggering
-- A stream of beacon messages can trigger an action which will be executed based on different time and location based parameters. E.g. actions can be exectuted after a predefined delay or locked for a specific time. Moreover, actions can be defined to trigger only inside a certain distance range from the beacon or can have a validation period.
+- A stream of beacon messages can trigger an action which will be executed based on different time and location based parameters. Actions can e.g. be exectuted after a predefined delay or locked for a specific time. Moreover, actions can be defined to trigger only inside a certain distance range from the beacon or can have a validation period.
 - To make the execution of distance dependent actions more stable, the received signal strength of beacon messages is averaged by using a linearly weighted moving average filter.
 
 ### Service
