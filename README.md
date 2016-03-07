@@ -71,7 +71,19 @@ new RelutionIoTService()
 ```
 
 ### Beacon messages
-If you want to 
+If you want to get informed about incoming messages, just register as an observer, as shown below:
+```java
+RelutionIoTService.addBeaconMessageObserver(new RelutionIoTService.BeaconMessageObserver() {
+	@Override
+	public void onMessageReceived(BeaconMessage message) {
+		// Do something with the message.
+		if (message instanceof IBeaconMessage) {
+			// Do something with the iBeacon message.
+			IBeaconMessage iBeaconMessage = (IBeaconMessage) message;
+		}
+	}
+});
+```
 
 ### iBeacon Calibration
 
