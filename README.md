@@ -128,7 +128,7 @@ RelutionIoTService.addBeaconTagActionObserver(new RelutionIoTService.BeaconTagAc
 ```
 
 ### Relution tags
-If you want to implement your app based on Relution Tags, just register an observer to get informed about the tags. If the name or description of the tags is important, you can obtain these informations by calling the ```getTagInfoForTag``` method:
+If you want to implement your app based on Relution Tags, just register an observer to get informed about tags that are being sent by the beacons. If the name or description of the tags is important, you can obtain these informations by calling the ```getTagInfoForTag``` method:
 
 ```java
 RelutionIoTService.addRelutionTagObserver(new RelutionIoTService.RelutionTagObserver() {
