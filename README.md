@@ -50,6 +50,35 @@ As mentioned above, the service layer builds on top of the core layer and provid
 ## Reference application
 
 ## Sample code
+In the following section we show you, how the most important SDK features can be integrated inside your app. As described above, you can use the ```RelutionIoTService``` service class, if you do not need the flexibility of the underlying message processing architecture and just want to get informed about executed actions, incoming messages or just want to turn on/off some features.
+
+### Configuration
+The first thing you have to do is to add the ```RelutionIoTService``` service to your ```AndroidManifest.xml```. To start the service, you must call the ```startInForegroundMode``` or ```startInBackgroundMode``` method on an instance of this class. The minimum requirement, however, before starting the service, is to call the ```setConfig``` method, where you pass the URL and authentication data of your Relution organization. Moreover, you can enable/disable some features by calling the appropriate method (e.g. setCampaignActionTriggerEnabled). By default, all features are enabled. However, this might decrease the performance of your application.
+
+```java
+String baseUrl = "https://url-to-relution.com";
+String organizationUuid = "11111111-2222-3333-4444-555555555555";
+String username = "your_username";
+String password = "your_password";
+
+new RelutionIoTService()
+		.setConfig(baseUrl, organizationUuid, username, password)
+		.setLoggingEnabled(true)
+		.setCampaignActionTriggerEnabled(true)
+		.setHeatmapGenerationEnabled(true)
+		.setHeatmapReportingEnabled(true)
+		.startInForegroundMode(context.getApplicationContext());
+```
+
+### Beacon messages
+If you want to 
+
+### iBeacon Calibration
+
+### Campaign actions
+
+### Relution tags
+
 In the following section we show you, how to define a service that runs in background and listens to a specified set of beacons.
 ### Scanning beacon messages
 In order to start scanning, you must create a class that inherits the ```BlueRangeService``` class. In the ```onStarted``` method
