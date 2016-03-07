@@ -1,29 +1,41 @@
 # BlueRange SDK for Android
 ## What does this SDK do?
-"BlueRange SDK for Android" is a library for the Android platform providing an API to develop applications that interact with Bluetooth Low Energy beacons in general and BlueRange SmartBeacons in specific. The API is intended to provide an easy to use interface to develop time and location based applications that make use of BlueRange mesh networks. For more information about the BlueRange technology, have a look at this project on github. The SDK also provides components to seamlessly integrate the mobile app into an environment based on the Enterprise Mobility Management platform Relution. The Relution SmartBeacon Management allows you to control and monitor a mesh of SmartBeacons. Furthermore, it allows you to assign actions to the beacons that will be triggered, when the mobile device is next to the beacons.
+"BlueRange SDK for Android" is a library for the Android platform providing an API to develop applications that interact with Bluetooth Low Energy beacons in general and BlueRange SmartBeacons in specific. The API is intended to provide an easy to use interface to develop time and location based applications that make use of BlueRange mesh networks. For more information about the BlueRange technology, have a look at this project on github. The SDK also provides components to seamlessly integrate the mobile app into an environment based on the Enterprise Mobility Management platform Relution. The Relution SmartBeacon Management allows you to control and monitor a mesh of SmartBeacons and assign actions that will be triggered, when the mobile device detects beacons.
 
 ## Features
-Currently the BlueRange SDK supports Android 4.3 and iOS 8.0 devices. However, to enable advertising and thus collecting the data for the heatmap, Android devices must additionally support the Bluetooth LE peripheral mode and have at least the API level 21.
-At the moment the BlueRange SDK provides the following features:
+Currently the BlueRange SDK supports Android 4.3 and iOS 8.0 devices. However, to enable advertising, Android devices must additionally support the Bluetooth LE peripheral mode and run at least the API level 21.
+At the moment the BlueRange SDK contains a core and a service layer. The core layer consists of small components to process incoming beacon messages and can be combined to build a flexible message processing architecture. The service layer builds on top of the core layer and is responsible for the integration of the SDK and the Relution platform. The current version supports the following features:
 
-### Scanning
-- Scanning for iBeacon messages, Relution Tag messages (RelutionTagMessageV1) and JoinMeMessages. 
-- The scanning procedure will be continued when the app is running in background mode, even when the user attempts to terminate the app.
-- The energy consumption can be adjusted dynamically by changing properties like the scan interval.
-- Messages can be saved persistently and postprocessed at a later time. The scan log is saved in an energy efficient way.
-- Messages logged over a long period of time can be transformed to status reports and periodically sent to a mesh management system.
+### Core
+#### Advertising
+- Advertising arbitrary data in foreground and background.
 
-### Advertising
-- Advertising arbitrary data and BlueRange specific messages in foreground and background mode.
+#### Scanning
+- Scanning iBeacon, Relution Tag and BlueRange specific messages. 
+- The scan procedure will be continued when the app is running in background, even when the user attempts to terminate the app.
+- The energy consumption can be adjusted dynamically by changing scan properties like the scan interval.
 
-## Supported devices
+#### Logging
+- Messages can be saved persistently and postprocessed at a later time. The log will be persisted with a minimum amount of energy consumption.
+
+#### Reporting
+- Messages logged over a long period of time can be transformed to status reports and periodically sent to a mesh management system like the Relution SmartBeacon management system.
+
+#### Triggering
+- A stream of beacon messages can trigger an action which will be executed by considering different time and location based parameters. E.g. actions can be exectuted after a predefined delay or locked for a specific time. Moreover, actions can be defined to trigger only inside a certain distance range from the beacon or can have a validation period.
+- To make the execution of distance dependent actions more stable, the received signal strength of beacon messages is averaged by using a linearly weighted moving average filter.
+
+### Service
+As mentioned above, the service layer builds on top of the core layer and provides some high level features that make use of the Relution platform.
+- iBeacon messages can be calibrated to improve the precision of distance dependent actions.
+- Relution Tags can be mapped to their names and description.
+- It is possible to periodically send specific advertising messages to generate data, that can be used to display a heatmap on the Relution SmartBeacon management platform.
 
 ## Documentation
-
-## License
+- 
 
 ## Getting started
-- In order to start with your own app, first you need to unzip the "BlueRangeSDK_Android.zip".
+- In order to get started with your own app, first you need to unzip the "BlueRangeSDK_Android.zip".
 - Next, start the Android IDE which you want to develop with (e.g. Android Studio) and import the project that is contained in the unpacked folder. To do this with Android Studio, just click on "Open an existing Android project" right after Android Studio has started and choose the unpacked folder.
 - After the project has been imported, just have a look at the project structure on the left side bar.
 - As you can see the "com.mway.bluerange.android" contains two subpackages called "examples" and "sdk".
