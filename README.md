@@ -11,7 +11,7 @@ The BlueRange SDK is divided into two layers, a core and a service layer. The co
 
 ### Core
 #### Advertising
-- Advertising arbitrary data in foreground and background.
+- Sending advertising messages of arbitrary data.
 
 #### Scanning
 - Scanning iBeacon, Relution Tag and BlueRange specific messages. 
