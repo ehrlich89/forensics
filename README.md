@@ -48,7 +48,7 @@ As mentioned above, the service layer builds on top of the core layer and provid
 ## Reference application
 
 ## Sample code
-In the following section shows you, how the most important SDK features can be integrated inside your app. As described above, you can use the ```RelutionIoTService``` service class, if you do not need the flexibility of the underlying message processing architecture and just want to get informed about executed actions, incoming messages or just want to turn on/off some features.
+The following section shows you, how the most important SDK features can be integrated inside your app. As described above, you can use the ```RelutionIoTService``` service class, if you do not need the flexibility of the underlying message processing architecture and just want to get informed about executed actions, incoming messages or just want to turn on/off some features.
 
 ### Configuration
 The first thing you have to do is to add the ```RelutionIoTService``` service to your ```AndroidManifest.xml```. To start the service, you must call the ```startInForegroundMode``` or ```startInBackgroundMode``` method on an instance of this class. The minimum requirement, however, before starting the service, is to call the ```setConfig``` method, where you pass the URL, organization UUID and authentication data of your Relution organization. Moreover, you can enable/disable some features by calling methods like ```setCampaignActionTriggerEnabled```. By default, all features are enabled. However, having all features turned on might decrease the performance of your application.
