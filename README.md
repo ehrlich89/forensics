@@ -175,7 +175,7 @@ beaconScanner.startScanning();
 
 
 ### Advertising
-To periodically send advertising messages, just use the ```BeaconAdvertiser``` class:
+To periodically send advertising messages, just call one of the ```start``` methods of the ```BeaconAdvertiser``` class:
 ```java
 public class AdvertisingService extends BlueRangeService {
     @Override
