@@ -89,7 +89,7 @@ RelutionIoTService.addBeaconMessageObserver(new RelutionIoTService.BeaconMessage
 
 ### iBeacon calibration
 To calibrate an iBeacon inside your app (like in the reference application), just place your device 1 meter away from the beacon
-and deliver an averaged RSSI to the Relution server by calling the ```calibrateIBeacon``` method, as shown below:
+and deliver an averaged RSSI to the Relution server by calling ```calibrateIBeacon```, as shown below:
 ```java
 RelutionIoTService.addBeaconMessageObserver(new RelutionIoTService.BeaconMessageObserver() {
 	@Override
