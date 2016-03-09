@@ -73,7 +73,7 @@ new RelutionIoTService()
 ```
 
 ### Beacon messages
-If you want to get informed about incoming beacon messages, just register as an observer, as shown below:
+If your app must get informed about incoming beacon messages, you can register a ```BeaconMessageObserver``` instance by calling ```addBeaconMessageObserver```, as shown below. Take in mind, however, that your observer will only get messages that have just been processed by one of the messages processing components the ```RelutionIoTService``` uses. If you need to scan for specific beacon messages, use the ```BeaconMessageScanner``` class.
 ```java
 RelutionIoTService.addBeaconMessageObserver(new RelutionIoTService.BeaconMessageObserver() {
 	@Override
@@ -89,7 +89,7 @@ RelutionIoTService.addBeaconMessageObserver(new RelutionIoTService.BeaconMessage
 
 ### iBeacon calibration
 To calibrate an iBeacon inside your app (like in the reference application), just place your device 1 meter away from the beacon
-and deliver an averaged RSSI to the Relution server by calling ```calibrateIBeacon```, as shown below:
+and send an averaged RSSI value of the iBeacon to Relution by calling ```calibrateIBeacon```, as shown below:
 ```java
 RelutionIoTService.addBeaconMessageObserver(new RelutionIoTService.BeaconMessageObserver() {
 	@Override
@@ -107,7 +107,7 @@ RelutionIoTService.addBeaconMessageObserver(new RelutionIoTService.BeaconMessage
 ```
 
 ### Beacon actions
-If actions have been assigned to beacons inside a campaign, your app should handle these actions by registering observers for each specific type of action:
+If beacons take part in a campaign, your app should react to actions defined in the campaign. You can do this by adding observer instances to the ```RelutionIoTService``` instance for each specific type of action:
 ```java
 RelutionIoTService.addBeaconNotificationActionObserver(new RelutionIoTService.BeaconNotificationActionObserver() {
 	@Override
@@ -130,7 +130,7 @@ RelutionIoTService.addBeaconTagActionObserver(new RelutionIoTService.BeaconTagAc
 ```
 
 ### Relution tags
-If you want to implement your app based on Relution Tags, just register an observer to get informed about the tags of near beacons. If the name or description of the tags is important, you can obtain these informations by calling the ```getTagInfoForTag``` method:
+If you want to make use of Relution Tags, register a ```RelutionTagObserver``` to get informed about all received Relution Tags. If you need to have access to the name or description of a Relution Tag, just call ```getTagInfoForTag```:
 
 ```java
 RelutionIoTService.addRelutionTagObserver(new RelutionIoTService.RelutionTagObserver() {
@@ -146,8 +146,8 @@ RelutionIoTService.addRelutionTagObserver(new RelutionIoTService.RelutionTagObse
 ```
 
 ### Scanning
-If you just want to scan for specific beacon messages, you can create an instance of ```BeaconMessageScanner```,
-configure it and register a ```BeaconMessageStreamNodeReceiver``` to get informed about the incoming messages. You can also add message types to the scanner's configuration after you have started the scanner by calling the appropriate methods of the ```BeaconMessageScannerConfig``` object.
+If you want to scan for specific beacon messages, you can create an instance of ```BeaconMessageScanner``` and
+configure it, so that the scanner scans for these messages. Next, register a ```BeaconMessageStreamNodeReceiver``` whose ```onReceivedMessage``` will be called, whenever a matching message has been received. You can also add message types to the scanner's configuration after you have started the scanner by calling the appropriate methods of the ```BeaconMessageScannerConfig``` object.
 
 ```java
 final BeaconMessageScanner beaconScanner = new BeaconMessageScanner(this);
