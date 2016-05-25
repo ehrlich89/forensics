@@ -65,7 +65,7 @@ As mentioned above, the service layer builds on top of the core layer and provid
 
 ## Reference application
 
-NearYou is a reference application, which shows you the messages that are currently being received by the app and allows you to check whether you have correctly configured the campaign actions. 
+The RelutionIoTApp is a reference application, which shows you the messages that are currently being received by the app and allows you to check whether you have correctly configured the campaign actions. 
 
 Before you start the app, you must configure the ```RelutionIoTService``` class in the ```RelutionIoTAppDelegate``` class, so that the correct Relution organization will be used. Please, have a look at the "Sample code" section, to see, what the specific fields of the ```RelutionIoTService```'s configuration mean.
 
