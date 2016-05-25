@@ -1,7 +1,7 @@
-# BlueRange SDK for Android
+# BlueRange SDK for iOS
 
 ## What does this SDK do?
-"BlueRange SDK for Android" is a library for the Android platform providing an API to develop mobile applications that interact with Bluetooth Low Energy beacons in general and BlueRange SmartBeacons in specific. The API is intended to provide an easy to use interface to develop time and location based applications that make use of BlueRange mesh networks. For more information about the BlueRange technology, have a closer look at this project on GitHub. 
+"BlueRange SDK for iOS" is a library for the iOS platform providing an API to develop mobile applications that interact with Bluetooth Low Energy beacons in general and BlueRange SmartBeacons in specific. The API is intended to provide an easy to use interface to develop time and location based applications that make use of BlueRange mesh networks. For more information about the BlueRange technology, have a closer look at this project on GitHub. 
 
 The SDK also provides a seamless integration into an infrastructure based on the Enterprise Mobility Management platform Relution. Relution SmartBeacon Management is part of Relution and allows you to control and monitor a mesh of SmartBeacons. Using Relution you can assign each beacon a message that will be send out in regular intervals. At the moment Relution supports iBeacons and Relution Tag messages. 
 
@@ -10,7 +10,7 @@ The idea behind Relution Tags is to assign each beacon a number of tags that the
 iBeacons, on the other side, are currently used to realize a concept, which we call "campaigns". A campaign allows you to define a set of actions that will be triggered within a mobile app, whenever the device is next to a beacon that takes part in the campaign. In contrast to the concept of Relution tags, the mapping of iBeacon and app behavior is not done by the app itself but by Relution. The drawback of this concept is that your app constantly needs internet access. The advantage, however, is, that the content and behavior that is associated with an action, will be instantly updated, whenever it was changed in Relution.
 
 ## Features
-Currently the BlueRange SDK supports Android devices that run at least on API level 4.3. However, to enable advertising, Android devices must additionally support the Bluetooth LE peripheral mode and run at least on API level 21.
+Currently the BlueRange SDK supports iOS devices that run at least on iOS 8.0.
 
 The BlueRange SDK is divided into two layers, a core and a service layer. The core layer consists of a set of message processing components that can be combined to a flexible message processing architecture. The service layer builds on top of the core layer and integrates the message processing components and the Relution platform. The current version supports the following features:
 
@@ -32,7 +32,6 @@ The BlueRange SDK is divided into two layers, a core and a service layer. The co
 #### Triggering
 - A stream of beacon messages can trigger an action which will be executed based on time and location based parameters. Actions can e.g. be executed after a predefined delay or locked for a specific duration. Moreover, actions can be defined to trigger only inside a certain range to the beacon or can have a validation period.
 - To make the execution of distance dependent actions more stable, the messages' received signal strength is averaged over time by using a linearly weighted moving average filter.
-- Notice: most devices (e.g. Galaxy S4, Nexus 5, Nexus 9) are able to receive about 1-2 messages/sec. However, some Android 5 devices scan with a very low rate, even when the ```BluetoothLeScanner```'s scan mode is set to ```SCAN_MODE_LOW_LATENCY```. We hope that this problem will be solved in future Android versions.
 
 ### Service
 As mentioned above, the service layer builds on top of the core layer and provides some high level features to integrate the message processing components with the Relution SmartBeacon Management platform. Concretely, it enables you
@@ -44,20 +43,20 @@ As mentioned above, the service layer builds on top of the core layer and provid
 - All currently supported features are bundled in the ```RelutionIoTService``` class. However, if you want more flexibility, you can build your app on top of the core and service components. To get an overview of the SDK's packages and classes, please have a look at our documentation in the ```/docs``` directory.
 
 ## Getting started
-- In order to get started with your own app, you first need to unzip the "BlueRangeSDK_Android.zip".
-- Next, start the Android IDE of your choise (e.g. Android Studio) and import the project contained in the unpacked folder. To do this with Android Studio, just click on "Open an existing Android project" right after Android Studio has been started and choose the unpacked folder.
+- In order to start with your own app, first you need to unzip the "BlueRangeSDK_iOS.zip".
+- Next, start Xcode and import the project that is contained in the unpacked folder. To do this, just click on "Open another project" on the "Welcome to Xcode" screen and choose the BlueRange_SDK_iOS.xcodeproj contained inside the subfolder "bluerangesdk".
 - After the project has been imported, just have a look at the project structure on the left side bar.
-- As you can see, the ```com.mway.bluerange.android``` package contains two subpackages ```examples``` and ```sdk```.
-- The ```sdk``` package consists of the SDK's source code. So, if you are interested in how the SDK components are implemented, you should have a closer look at these packages.
-- In the ```examples``` package you can see how the SDK components can be used within your app. The ```systemtests``` package contains code examples that show you, how to use the SDK's core components.
-- The ```nearyou``` package contains a reference application displaying you the currently received beacon messages and the executed actions. You can test the app, if you have a Bluetooth Low Energy capable device. In order to start the app, you only need to build, deploy and start the application. If you are using Android Studio, you can simply use the keyboard shortcut ```Shift+F10```.
-- The best way to start writing your own app would be to replace all classes of the NearYou app and transform the code to your own needs.
+- As you can see, the "sdk" folder contains two subfolders called "examples" and "sdk".
+- The "sdk" package contains the SDK's source code. So if you are interested in how we implemented the SDK components, you should have a closer look at the packages contained inside.
+- In the "examples" folder you can see, how the SDK components can be used within your app code. The ```ExampleApplication```class contains some basic examples, of how the background scanning and advertising services can be started.
+- The folder "nearyou" contains an example app, similar to the one contained in the Android SDK, displaying a set of products. Each product could in future be tagged with a specific Relution Tag. If the device is next to a beacon placed beside the product, the app receives the Relution tags and displays the products that are next to the user. You can test the app, if you have an iOS 8.0 device. In order to start the app, you only need to build, deploy and start the application by clicking on the "Run" button on the top left corner of Xcode. After the app has been built and deployed, you should see the example app on your device listing some sample products how it could look in an app using this SDK.
+- To experiment with the SDK, you can have a look at the source code of the ```ExampleApplication``` which shows you how to use the core components of the SDK. In the BlueRange Android SDK you will find some more classes for the persistent logging of an incoming message stream and periodically sending status reports. In future we are going to implement these components for the iOS version of the BlueRange SDK, as well.
 
 ## Reference application
 
 NearYou is a reference application, which shows you the messages that are currently being received by the app and allows you to check whether you have correctly configured the campaign actions. 
 
-Before you start the app, you must configure the ```RelutionIoTService``` class in the ```com.mway.bluerange.android.examples.nearyou.Application``` class, so that the correct Relution organization will be used. Please, have a look at the "Sample code" section, to see, what the specific fields of the ```RelutionIoTService```'s configuration mean.
+Before you start the app, you must configure the ```RelutionIoTService``` class in the ```RelutionIoTAppDelegate``` class, so that the correct Relution organization will be used. Please, have a look at the "Sample code" section, to see, what the specific fields of the ```RelutionIoTService```'s configuration mean.
 
 In order to calibrate an iBeacon, just place your device 1 meter away from the beacon, wait about 5 seconds, and click on the "Calibrate" button. To verify, whether the iBeacon has correctly been calibrated, the "Calibrated RSSI" value should have changed to a new value. For each iBeacon an estimated distance is calculated. The SDK currently supports two distance estimation algorithms. The analytical distance estimator computes the distance out of an averaged RSSI value based on a mathematical model. The empirical distance estimator on the other side is based on a distance estimation scheme implemented in the Android beacon library, which calculates distances based on measurements that where collected from different Android devices.
 
