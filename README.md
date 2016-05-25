@@ -43,6 +43,16 @@ As mentioned above, the service layer builds on top of the core layer and provid
 - All currently supported features are bundled in the ```RelutionIoTService``` class. However, if you want more flexibility, you can build your app on top of the core and service components. To get an overview of the SDK's packages and classes, please have a look at our documentation in the ```/docs``` directory.
 
 ## Getting started
+### Android
+- In order to get started with your own app, you first need to unzip the "BlueRangeSDK_Android.zip".
+- Next, start the Android IDE of your choise (e.g. Android Studio) and import the project contained in the unpacked folder. To do this with Android Studio, just click on "Open an existing Android project" right after Android Studio has been started and choose the unpacked folder.
+- After the project has been imported, just have a look at the project structure on the left side bar.
+- As you can see, the ```com.mway.bluerange.android``` package contains two subpackages ```examples``` and ```sdk```.
+- The ```sdk``` package consists of the SDK's source code. So, if you are interested in how the SDK components are implemented, you should have a closer look at these packages.
+- In the ```examples``` package you can see how the SDK components can be used within your app. The ```systemtests``` package contains code examples that show you, how to use the SDK's core components.
+- The ```nearyou``` package contains a reference application displaying you the currently received beacon messages and the executed actions. You can test the app, if you have a Bluetooth Low Energy capable device. In order to start the app, you only need to build, deploy and start the application. If you are using Android Studio, you can simply use the keyboard shortcut ```Shift+F10```.
+- The best way to start writing your own app would be to replace all classes of the NearYou app and transform the code to your own needs.
+### iOS
 - In order to start with your own app, first you need to unzip the "BlueRangeSDK_iOS.zip".
 - Next, start Xcode and import the project that is contained in the unpacked folder. To do this, just click on "Open another project" on the "Welcome to Xcode" screen and choose the BlueRange_SDK_iOS.xcodeproj contained inside the subfolder "bluerangesdk".
 - After the project has been imported, just have a look at the project structure on the left side bar.
