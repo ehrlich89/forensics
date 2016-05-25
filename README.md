@@ -54,7 +54,7 @@ As mentioned above, the service layer builds on top of the core layer and provid
 - The best way to start writing your own app would be to replace all classes of the NearYou app and transform the code to your own needs.
 
 ### iOS
-- In order to start with your own app, first you need to unzip the "BlueRangeSDK_iOS.zip".
+- To use the iOS SDK, first unzip the "BlueRangeSDK_iOS.zip".
 - Next, start Xcode and import the project that is contained in the unpacked folder. To do this, just click on "Open another project" on the "Welcome to Xcode" screen and choose the BlueRange_SDK_iOS.xcodeproj contained inside the subfolder "bluerangesdk".
 - After the project has been imported, just have a look at the project structure on the left side bar.
 - As you can see, the "sdk" folder contains two subfolders called "examples" and "sdk".
