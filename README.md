@@ -20,7 +20,13 @@ The BlueRange SDK is divided into two layers, a core and a service layer. The co
 - Sending advertising messages of arbitrary data.
 
 #### Scanning
-- Scanning iBeacon, Relution Tag and BlueRange specific messages. 
+- The beacon scanner supports different types of message formats:
+    - iBeacon message: Apple's standardized iBeacon format for BLE advertising.
+    - Eddystone UID message: One of Google's standardized BLE beacon profile which consists of a 10-byte namespace UID and a 6-byte instance identifier.
+    - Eddystone URL message: Another Eddystone beacon format which contains a URL.
+    - Join Me message: This is an advertising format which can be used to analyze BlueRange beacons. Each packet contains information about the beacon id, its connectivity etc.
+    - Relution Tag message: An advertising format supported by the Relution beacon management platform. It contains a list of Relution tags which can be mapped to actions a mobile device can trigger in offline scenarios.
+- iBeacon messages, Relution Tag and BlueRange specific messages. 
 - The scan procedure will be continued when the app is running in background, even when the user attempts to terminate the app.
 - The energy consumption can be adjusted dynamically by changing scan properties like the scan interval.
 
