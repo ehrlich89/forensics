@@ -6,9 +6,9 @@
 
 The SDK is specifically designed to interact with beacons that are enrolled in the Relution Beacon Management platform. E.g. you can use the management platform to instruct beacons to send a message which can later trigger actions on an Android or iOS device using this SDK. At the moment the SDK supports iBeacon, Eddystone, BlueRange and Relution Tag messages. 
 
-The idea behind Relution Tags is to assign each beacon a number of tags that will be sent out by the beacon in periodic intervals. A mobile app using this SDK receives these tags and individually interprets them e.g. by displaying product informations or triggering some other kind of app behavior. Since the app itself is responsible for mapping each tagc to a specific behavior, there is no need to be connected to the internet. Although the concept of Relution tags does not allow you to change the app's behavior dynamically, the Relution IoT platform makes it possible to exchange the tags a beacon sends out and, thus, enables your app to have a partial dynamic behavior without the requirement of constant internet access. 
+The idea behind Relution Tags is to assign each beacon a number of tags that will be sent out by the beacon in periodic intervals. A mobile app using this SDK receives these tags and individually interprets them e.g. by displaying product informations or triggering some other kind of app behavior. Since the app itself is responsible for mapping each tagc to a specific behavior, there is no need to be connected to the internet. Although the concept of Relution tags does not allow you to change the app's behavior dynamically, the Relution IoT platform makes it possible to exchange the tags for each beacon and, thus, enables your app to have a partial dynamic behavior without the requirement of constant internet access. 
 
-iBeacons, on the other side, are currently used to realize a concept, which we call "campaigns". A campaign allows you to define a set of actions that will be triggered within a mobile app, whenever the device is next to a beacon that takes part in the campaign. In contrast to the concept of Relution tags, the mapping of iBeacon and app behavior is not done by the app itself but by Relution. The drawback of this concept is that your app constantly needs internet access. The advantage, however, is, that the content and behavior that is associated with the action, will be instantly updated, whenever it it is changed in Relution.
+iBeacons, on the other side, are currently used to realize a concept, which we call "campaigns". A campaign allows you to define a set of actions that will be triggered by the mobile SDK, whenever the device is next to a beacon that takes part in the campaign. In contrast to the concept of Relution tags, the mapping of iBeacon and app behavior is not done by the app itself but by the beacon management platform. The drawback of this concept is that your app must be connected to the internet. The advantage, however, is, that the content and behavior that is associated with each action, will be instantly updated, whenever it the action is changed.
 
 ## Features
 Currently the BlueRange SDK supports iOS devices that run at least on iOS 8.0 and Android devices with at least API level 4.3. However, to enable advertising, Android devices must additionally support the Bluetooth LE peripheral mode and run at least on API level 21.
@@ -20,7 +20,7 @@ The BlueRange SDK is divided into two layers, a core and a service layer. The co
 - Sending advertising messages of arbitrary data.
 
 #### Scanning
-- The beacon scanner supports different types of message formats:
+- Scanning beacon messages of different formats:
     - iBeacon message: Apple's standardized iBeacon format for BLE advertising.
     - Eddystone UID message: One of Google's standardized BLE beacon profile which consists of a 10-byte namespace UID and a 6-byte instance identifier.
     - Eddystone URL message: Another Eddystone beacon format which contains a URL.
