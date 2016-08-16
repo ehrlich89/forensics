@@ -46,7 +46,7 @@ As mentioned above, the service layer builds on top of the core layer and provid
 - to map Relution Tags to their names and descriptions defined in the Relution platform.
 - to periodically send specific advertising messages, that will be used to generate and display a heatmap on the Relution SmartBeacon management platform.
 
-## Documentation
+## API reference
 - All currently supported features are bundled in the ```RelutionIoTService``` class. However, if you want more flexibility, you can build your app on top of the core and service components. To get an overview of the SDK's packages and classes, please have a look at our documentation in the ```/docs``` directory.
 
 ## Getting started
