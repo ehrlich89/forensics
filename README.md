@@ -34,7 +34,7 @@ Currently the following features are supported:
 - Messages logged over a long period of time can be transformed to status reports and periodically sent to a beacon management platform. A webservice e.g. can use these reports to estimate the device's position and generate a heatmap.
 
 #### Aggregating
-- A sequence of identical becon messages can be aggregated to average the messages' RSSI. The averaging algorithm uses a linearly weighted moving average filter.
+- A sequence of identical becon messages can be aggregated to average the RSSI. The averaging algorithm uses a linearly weighted moving average filter.
 
 #### Triggering
 - A stream of beacon messages can trigger actions based on different time and location based parameters. Currently supported action parameters are:
