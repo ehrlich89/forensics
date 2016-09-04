@@ -98,13 +98,29 @@ If your app needs a full integration with Relution, just start the ```RelutionIo
 - Logging: Turn logging on, if you want the SDK to log to the console. Turn this off to increase the performance.
 
 ```java
-String baseUrl = "https://url-to-relution.com";
-String organizationUuid = "11111111-2222-3333-4444-555555555555";
+String baseUrl = "https://iot.relution.io";
 String username = "your_username";
 String password = "your_password";
 
+RelutionIoTService.LoginObserver observer = new RelutionIoTService.LoginObserver() {
+    @Override
+    public void onLoginSucceeded() {
+
+    }
+
+    @Override
+    public void onLoginFailed() {
+
+    }
+
+    @Override
+    public void onRelutionError() {
+
+    }
+};
+
 new RelutionIoTService()
-    .setConfig(baseUrl, organizationUuid, username, password)
+    .setLoginData(baseUrl, username, password, observer)
     .setLoggingEnabled(true)
     .setCampaignActionTriggerEnabled(true)
     .setHeatmapGenerationEnabled(true)
