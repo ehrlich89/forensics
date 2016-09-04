@@ -15,7 +15,7 @@ Currently the following features are supported:
 
 ### Core
 #### Advertising
-- Sending advertising messages of arbitrary data.
+- Sending BLE advertising messages of arbitrary data.
 
 #### Scanning
 - Scanning beacon messages of different beacon types:
