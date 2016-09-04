@@ -10,7 +10,7 @@ Currently the BlueRange SDK supports iOS devices that run at least on iOS 8.0 an
 
 The BlueRange SDK has two layers, a core and a service layer.
 The core layer contains a set of components used to process streams of beacon messages like iBeacon or Eddystone messages. These message processing components can be combined to a flexible event driven architecture. 
-The service layer builds on top of the core layer and integrates the message processing components with the Relution API. 
+The service layer builds on top of the core layer and integrates the message processing components to realize the SDK services provided by Relution. 
 Currently the following features are supported:
 
 ### Core
