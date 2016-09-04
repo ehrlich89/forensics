@@ -20,7 +20,7 @@ Currently the following features are supported:
 #### Scanning
 - Scanning beacon messages of different beacon types:
     - iBeacon message: Apple's standardized iBeacon format for BLE advertising which contains an identifier triple (UUID, major and minor).
-    - Eddystone UID message: One of Google's standardized BLE beacon profile which consists of a 10-byte namespace UID and a 6-byte instance identifier.
+    - Eddystone UID message: One of Google's standardized BLE beacon formats which consists of a 10-byte namespace UID and a 6-byte instance identifier.
     - Eddystone URL message: Another Eddystone beacon format that contains a URL.
     - Join Me message: FruityMesh beacons broadcast these messages to establish a beacon network. Each packet holds the beacon id, its connectivity and some other useful information that can be used to analyze the mesh.
     - Relution Tag message: An advertising message format only supported by the Relution beacon management platform. It contains a list of tags used to trigger actions on a mobile device in offline scenarios.
