@@ -145,6 +145,7 @@ RelutionIoTService.addBeaconMessageObserver(new RelutionIoTService.BeaconMessage
     }
   }
 });
+```
 
 #### Relution campaigns
 Get informed about triggered actions by registering the appropriate listeners:
