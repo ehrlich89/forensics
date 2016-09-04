@@ -94,7 +94,7 @@ The following section shows you the most important SDK features.
 #### Service configuration
 If your app needs a full integration with Relution, just start the ```RelutionIoTService```. As shown below, you first have to login with your Relution account. Before you start the service you can turn on/off the features your app needs. Currently the RelutionIoTService supports the following features:
 - Campaigns: Turn on this feature, if you want to get informed about executed actions that you defined in Relution.
-- Analytics: Turn on this feature, if you want the SDK to periodically send reports to Relution, which can be used to generate a heatmpa.
+- Analytics: Turn on this feature, if you want the SDK to periodically send reports to Relution, which can be used to generate a heatmaps.
 - Heatmap: Turn on this feature, if you want the beacons to estimate the number of devices and generate a heatmap from out of this information.
 - Logging: Turn logging on, if you want the SDK to log to the console. Turn this off to increase the performance.
 
