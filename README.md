@@ -33,7 +33,7 @@ Currently the following features are supported:
 #### Reporting
 - Messages logged over a long period of time can be transformed to status reports and periodically sent to a beacon management platform. A webservice e.g. can use these reports to estimate the device's position and generate a heatmap.
 
-### Aggregating
+#### Aggregating
 - A sequence of equivalent becon messages can be aggregated to average the messages' RSSI. The averaging algorithm uses a linearly weighted moving average filter.
 
 #### Triggering
