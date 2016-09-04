@@ -47,7 +47,7 @@ Currently the following features are supported:
 The service layer builds on top of the core layer and provides some high level services used to integrate your app with Relution. Specifically, it enables you
 - to calibrate beacons to improve the beacon distance estimation.
 - to execute actions defined in the Campaigns section of Relution.
-- to send heatmap data to Relution.
+- to send heatmap reports to Relution.
 
 ## API reference
 - All currently supported features are combined in the ```RelutionIoTService``` class. However, if you want to build your app independently from Relution, you can build on top of the core components. To get an overview of the SDK's packages and classes, please have a look at the documentation in the ```/docs``` directory.
