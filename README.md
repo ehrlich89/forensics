@@ -90,7 +90,7 @@ Next to the tabs "iBeacon", "Relution Tags" and "JoinMe", the "Visited", "Conten
 ## Sample code
 The following section shows you the most important SDK features.
 
-### RelutionIoTService
+### Relution IoT Services
 If your app needs a full integration with Relution, just start the ```RelutionIoTService```. As shown below, you first have to login with your Relution account. Before you start the service you can turn on/off the features your app needs. Currently the RelutionIoTService supports the following features:
 - Campaigns: Turn on this feature, if you want to get informed about executed actions that you defined in Relution.
 - Analytics: Turn on this feature, if you want the SDK to periodically send reports to Relution, which can be used to generate a heatmpa.
@@ -128,6 +128,24 @@ new RelutionIoTService()
     .startAsThread(context.getApplicationContext());
 ```
 
+#### Relution beacon calibration
+To calibrate an iBeacon inside your app (like in the reference application), just place your device 1 meter away from the beacon
+and send an averaged RSSI value of the iBeacon message to Relution by calling ```calibrateIBeacon```, as shown below:
+```java
+RelutionIoTService.addBeaconMessageObserver(new RelutionIoTService.BeaconMessageObserver() {
+  @Override
+  public void onMessageReceived(BeaconMessage message) {
+    // Do something with the message.
+    if (message instanceof IBeaconMessage) {
+      // Get the iBeacon message.
+      IBeaconMessage iBeaconMessage = (IBeaconMessage) message;
+      // User moves to a place 1 meter away from the beacon that sends the iBeacon message...
+      // Calibrate the iBeacon message.
+      RelutionIoTService.calibrateIBeacon(iBeaconMessage.getIBeacon(), iBeaconMessage.getRssi());
+    }
+  }
+});
+
 #### Relution campaigns
 Get informed about triggered actions by registering the appropriate listeners:
 
@@ -153,49 +171,7 @@ RelutionIoTService.addBeaconTagActionObserver(new RelutionIoTService.BeaconTagAc
 });
 ```
 
-#### iBeacon calibration
-To calibrate an iBeacon inside your app (like in the reference application), just place your device 1 meter away from the beacon
-and send an averaged RSSI value of the iBeacon message to Relution by calling ```calibrateIBeacon```, as shown below:
-```java
-RelutionIoTService.addBeaconMessageObserver(new RelutionIoTService.BeaconMessageObserver() {
-  @Override
-  public void onMessageReceived(BeaconMessage message) {
-    // Do something with the message.
-    if (message instanceof IBeaconMessage) {
-      // Get the iBeacon message.
-      IBeaconMessage iBeaconMessage = (IBeaconMessage) message;
-      // User moves to a place 1 meter away from the beacon that sends the iBeacon message...
-      // Calibrate the iBeacon message.
-      RelutionIoTService.calibrateIBeacon(iBeaconMessage.getIBeacon(), iBeaconMessage.getRssi());
-    }
-  }
-});
-```
-
-### Beacon actions
-If beacons take part in a campaign, your app should react to the campaign's actions. Your app will get instantly notified about each action execution, when an observer has been registered for each specific type of action. Take in mind, however, that the app will take about 10 seconds to recognize changes that were made in Relution (adding iBeacon or Relution Tag messages to beacons).
-```java
-RelutionIoTService.addBeaconNotificationActionObserver(new RelutionIoTService.BeaconNotificationActionObserver() {
-  @Override
-  public void onNotificationActionExecuted(BeaconNotificationAction notificationAction) {
-    // Do something...
-  }
-});
-RelutionIoTService.addBeaconContentActionObserver(new RelutionIoTService.BeaconContentActionObserver() {
-  @Override
-  public void onContentActionExecuted(BeaconContentAction contentAction) {
-    // Do something...
-  }
-});
-RelutionIoTService.addBeaconTagActionObserver(new RelutionIoTService.BeaconTagActionObserver() {
-  @Override
-  public void onTagActionExecuted(BeaconTagAction tagAction) {
-    // Do something...
-  }
-});
-```
-
-### Relution tags
+#### Relution tags
 If you want to make use of Relution Tags, register a ```RelutionTagObserver``` to get informed about all received Relution Tags. If you need to have access to the name or description of a Relution Tag, just call ```getTagInfoForTag```:
 
 ```java
