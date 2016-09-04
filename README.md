@@ -88,10 +88,14 @@ Next to the tabs "iBeacon", "Relution Tags" and "JoinMe", the "Visited", "Conten
 ![alt tag](https://raw.githubusercontent.com/ehrlich89/images/master/05_Action2.png)
 
 ## Sample code
-The following section shows you, how the most important SDK features can be integrated inside your app. As described above, you can use the ```RelutionIoTService``` class, if you do not need the flexibility of the underlying message processing architecture and just want to get informed about executed actions, incoming messages or just want to turn on/off features.
+The following section shows you the most important SDK features.
 
-### Configuration
-The first thing you have to do is to add the ```RelutionIoTService``` service to your ```AndroidManifest.xml```. Next, create an instance of this class inside the ```onCreate``` method of your  ```android.app.Application``` subclass. To start the service, you must call the ```startInForegroundMode``` or ```startInBackgroundMode``` method. If you start the service in background mode, the service will continue to process messages, even when the user tries to terminate the app. The minimum requirement before starting the service, however, is to call the ```setConfig``` method, where you pass the Relution URL, the organization UUID and the authentication data, you use to log in. You find the organization UUID in Relution, when you click on the information tab of your site. The organization UUID is the "API Key" in the list. Moreover, you can enable/disable features by calling the ```set...Enabled``` methods. By default, all features are enabled. However, having all features turned on, might decrease the overall performance of your application. The easiest way to improve the performance, is to set ```loggingEnabled``` to ```false```. This will stop logging debug messages to the Android logcat. ```setCampaignActionTriggerEnabled``` enables/disables the execution of campaign actions. If you enable ```heatmapGeneration```, the ```RelutionIoTService``` will constantly send specific advertising messages to the beacons. The beacons will collect this information and send it to Relution, where it will be used to generate and display the heatmap. Setting ```heatmapReporting``` to ```true```, will turn a status reporter on, that constantly collects BlueRange specific beacon messages and periodically sends status reports to Relution which can be analyzed and postprocessed at a later time.
+### RelutionIoTService
+If your app needs a full integration with Relution, just start the ```RelutionIoTService```. As shown below, you first have to login with your Relution account. Before you start the service you can turn on/off the features your app needs. Currently the RelutionIoTService supports the following features:
+- Campaigns: Turn on this feature, if you want to get informed about executed actions that you defined in Relution.
+- Analytics: Turn on this feature, if you want the SDK to periodically send reports to Relution, which can be used to generate a heatmpa.
+- Heatmap: Turn on this feature, if you want the beacons to estimate the number of devices and generate a heatmap from out of this information.
+- Logging: Turn logging on, if you want the SDK to log to the console. Turn this off to increase the performance.
 
 ```java
 String baseUrl = "https://url-to-relution.com";
@@ -105,22 +109,7 @@ new RelutionIoTService()
     .setCampaignActionTriggerEnabled(true)
     .setHeatmapGenerationEnabled(true)
     .setHeatmapReportingEnabled(true)
-    .startInForegroundMode(context.getApplicationContext());
-```
-
-### Beacon messages
-If your app must react to incoming beacon messages, you can register a ```BeaconMessageObserver``` instance by calling ```addBeaconMessageObserver```, as shown below. Take in mind, however, that your observer will only receive messages that were processed by one of the messages processing components, the ```RelutionIoTService``` uses. If you need to scan for specific beacon messages, use the ```BeaconMessageScanner``` class.
-```java
-RelutionIoTService.addBeaconMessageObserver(new RelutionIoTService.BeaconMessageObserver() {
-  @Override
-  public void onMessageReceived(BeaconMessage message) {
-    // Do something with the message.
-    if (message instanceof IBeaconMessage) {
-      // Do something with the iBeacon message.
-      IBeaconMessage iBeaconMessage = (IBeaconMessage) message;
-    }
-  }
-});
+    .startAsThread(context.getApplicationContext());
 ```
 
 ### iBeacon calibration
