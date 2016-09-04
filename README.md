@@ -40,7 +40,7 @@ Currently the following features are supported:
 - A stream of beacon messages can trigger actions based on different time and location based parameters. Currently supported action parameters are:
   - Action delay: Actions will be executed after a predefined delay.
   - Action lock: Actions will not be executed for a specific time after they have been triggered.
-  - Activation distance: Action will only be triggered, if the device has a distance below a predefined threshold.
+  - Activation distance: Actions will only be triggered, if the device has a distance below a predefined threshold.
   - Validation period: An action can have a start and end validation time.
 
 ### Service
