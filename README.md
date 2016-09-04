@@ -128,7 +128,7 @@ new RelutionIoTService()
     .startAsThread(context.getApplicationContext());
 ```
 
-### Relution campaigns
+#### Relution campaigns
 Get informed about triggered actions by registering the appropriate listeners:
 
 ```java
@@ -153,7 +153,7 @@ RelutionIoTService.addBeaconTagActionObserver(new RelutionIoTService.BeaconTagAc
 });
 ```
 
-### iBeacon calibration
+#### iBeacon calibration
 To calibrate an iBeacon inside your app (like in the reference application), just place your device 1 meter away from the beacon
 and send an averaged RSSI value of the iBeacon message to Relution by calling ```calibrateIBeacon```, as shown below:
 ```java
