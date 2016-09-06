@@ -269,7 +269,7 @@ for (BeaconMessage message : logger) {
 ```
 
 #### Aggregating
-Message aggregation can be useful, if you want to reduce the overall message throughput or if you want to average the RSSI. Currently the BeaconMessageAggregator supports two modes, a packet mode and a sliding window mode. The packet mode combines all equal messages received in aggregateDuration milliseconds into one, whereas the sliding window mode keeps the same number of messages in the stream while averaging the RSSI using the average filter:
+Message aggregation can be useful, if you want to reduce the overall message throughput or if you want to average the RSSI. Currently the BeaconMessageAggregator supports two modes, a packet mode and a sliding window mode. The packet mode combines a stream of equivalent messages received in aggregateDuration milliseconds into one, whereas the sliding window mode keeps the same number of messages in the stream while averaging the RSSI using the average filter:
 
 ```java
 BeaconMessageAggregator aggregator = new BeaconMessageAggregator(Tracer.getInstance(), beaconScanner);
