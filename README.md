@@ -279,7 +279,7 @@ aggregator.setAverageFilter(new LinearWeightedMovingAverageFilter(0.3f));
 ```
 
 #### Triggering
-In some cases you want to trigger actions, if the the message stream fullfills time and location specfic conditions. In this case you can use the BeaconMessageActionTrigger class. To define the message-action mapping you have to pass a BeaconActionRegistry to the trigger's constructor, as shown below. 
+In some cases you want to trigger actions, whenever the message stream fulfills certain time and location specfic conditions. In this case you can use the BeaconMessageActionTrigger class. To define the message-action mapping you have to pass a BeaconActionRegistry to the trigger's constructor, as shown below. 
 
 ```java
 BeaconMessageActionTrigger actionTrigger = new BeaconMessageActionTrigger(scanner, new BeaconActionRegistry() {
