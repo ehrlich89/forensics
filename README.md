@@ -234,7 +234,7 @@ beaconScanner.startScanning();
 ```
 
 #### Logging
-If you want to process scanned messages at a later time, it might be useful to save them on the device persistently and read them out later. To do this, you can use the ```BeaconMessageLogger``` which provides you an easy-to-use and thread-safe interface. In most cases you will pass the scanner to the logger's constructor. However, if your message processing pipeline is more complex, you can pass an arbitrary class that implements the ```BeaconMessageStreamNode``` interface. The received messages will be instantly passed to all receivers that have attached to the logger. Thus, you can use the logger to silently persist the message stream:
+If you want to process scanned messages at a later time, it might be useful to save them on the device persistently and read them out later. To do this, you can use the ```BeaconMessageLogger``` which provides you an easy-to-use and thread-safe interface. In most cases you will pass the scanner to the logger's constructor. However, if your message processing pipeline is more complex, you can pass any message processing object which implements the ```BeaconMessageStreamNode``` interface. The received messages will be instantly passed to all receivers that have attached to the logger. Thus, you can use the logger to silently persist the message stream:
 ```java
 // Configure Beacon scanner
 final BeaconMessageScanner beaconScanner = new BeaconMessageScanner(context);
