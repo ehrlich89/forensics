@@ -234,7 +234,7 @@ beaconScanner.startScanning();
 ```
 
 #### Logging
-If you want to process scanned messages at a later time, it might be useful to save them on the device persistently and read them out later. To do this, you can use the ```BeaconMessageLogger``` which provides you an easy and thread-safe to use interface. In most cases you will pass the scanner to the logger's constructor. However, if your message processing pipeline is more complex, you can pass an arbitrary class that implements the ```BeaconMessageStreamNode``` interface. The 
+If you want to process scanned messages at a later time, it might be useful to save them on the device persistently and read them out later. To do this, you can use the ```BeaconMessageLogger``` which provides you an easy and thread-safe to use interface. In most cases you will pass the scanner to the logger's constructor. However, if your message processing pipeline is more complex, you can pass an arbitrary class that implements the ```BeaconMessageStreamNode``` interface. The received messages will be instantly passed to all receivers that have attached to the logger. Thus, you can use the logger to silently persist the message stream:
 ```java
 // Configure Beacon scanner
 final BeaconMessageScanner beaconScanner = new BeaconMessageScanner(context);
@@ -258,9 +258,6 @@ logger.addReceiver(new BeaconMessageStreamNodeReceiver() {
         BeaconMessageLog log1 = logger.readLog();
         String printString = log1.print();
         Log.d("Test", printString);
-        //logger.clearMessages();
-        //BeaconMessageLog log2 = logger.readLog();
-        //log2.print();
     }
 
     @Override
@@ -269,6 +266,12 @@ logger.addReceiver(new BeaconMessageStreamNodeReceiver() {
 beaconScanner.startScanning();
 ```
 
+If you need to consume all messages saved in the log, you can use the ```readLog```method. However, if your log contains a large number of messages, you should better use the log iterator or the for each loop to reduce the memory consumption. The log iterator will load the messages in the order they have been saved. It is thread-safe and optimized for performance.  
+```java
+for (BeaconMessage message : logger) {
+    // Some something
+}
+```
 
 #### Advertising
 To periodically send advertising messages, just call one of the ```start``` methods of the ```BeaconAdvertiser``` class:
