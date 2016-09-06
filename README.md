@@ -131,10 +131,10 @@ RelutionIoTService.LoginObserver observer = new RelutionIoTService.LoginObserver
 
 new RelutionIoTService()
     .setLoginData(baseUrl, username, password, observer)
-    .setLoggingEnabled(true)
-    .setCampaignActionTriggerEnabled(true)
-    .setHeatmapGenerationEnabled(true)
-    .setHeatmapReportingEnabled(true)
+    .setLoggingEnabled(true) // Logging
+    .setCampaignActionTriggerEnabled(true) // Campaigns
+    .setHeatmapGenerationEnabled(true) // Heatmap
+    .setHeatmapReportingEnabled(true) // Analytics
     .startAsThread(context.getApplicationContext());
 ```
 
