@@ -233,6 +233,42 @@ beaconScanner.addReceiver(new BeaconMessageStreamNodeReceiver() {
 beaconScanner.startScanning();
 ```
 
+#### Logging
+If you want to process scanned messages at a later time, it might be useful to save them on the device persistently and read them out later. To do this, you can use the ```BeaconMessageLogger``` which provides you an easy and thread-safe to use interface. In most cases you will pass the scanner to the logger's constructor. However, if your message processing pipeline is more complex, you can pass an arbitrary class that implements the ```BeaconMessageStreamNode``` interface. The 
+```java
+// Configure Beacon scanner
+final BeaconMessageScanner beaconScanner = new BeaconMessageScanner(context);
+BeaconMessageScannerConfig config = new BeaconMessageScannerConfig(beaconScanner);
+config.scanIBeacon("b9407f30-f5f8-466e-aff9-25556b57fe6d", 45, 1);
+config.scanIBeacon("c9407f30-f5f8-466e-aff9-25556b57fe6d", 46, 2);
+config.scanRelutionTagsV1(new long[]{13, 2});
+beaconScanner.setConfig(config);
+
+// Configure BeaconMessageLogger
+BeaconMessageLogger logger = new BeaconMessageLogger(beaconScanner, context);
+logger.addReceiver(new BeaconMessageStreamNodeReceiver() {
+    @Override
+    public void onMeshActive(BeaconMessageStreamNode senderNode) {}
+
+    @Override
+    public void onReceivedMessage(BeaconMessageStreamNode senderNode, BeaconMessage message) {
+        BeaconMessageLogger logger = (BeaconMessageLogger) senderNode;
+        Log.d("Test", "onMeshInactive");
+        beaconScanner.stopScanning();
+        BeaconMessageLog log1 = logger.readLog();
+        String printString = log1.print();
+        Log.d("Test", printString);
+        //logger.clearMessages();
+        //BeaconMessageLog log2 = logger.readLog();
+        //log2.print();
+    }
+
+    @Override
+    public void onMeshInactive(BeaconMessageStreamNode senderNode) {}
+});
+beaconScanner.startScanning();
+```
+
 
 #### Advertising
 To periodically send advertising messages, just call one of the ```start``` methods of the ```BeaconAdvertiser``` class:
