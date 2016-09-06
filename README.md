@@ -158,7 +158,7 @@ RelutionIoTService.addBeaconMessageObserver(new RelutionIoTService.BeaconMessage
 ```
 
 #### Relution campaigns
-Get informed about triggered actions by registering the appropriate listeners:
+Get informed about triggered actions by registering the corresponding listeners:
 
 ```java
 // Get informed about to campaign actions.
