@@ -55,7 +55,7 @@ The service layer builds on top of the core layer and provides some high level s
 ## Getting started
 ### Android
 #### AAR import
-- The easiest way to import the BlueRangeSDK is to add a dependendency to your project's build.gradle file, after you have imported the bluerangesdk-release.aar which you can find under the path bluerangesdk/build/outputs/aar.
+- The easiest way to import the BlueRangeSDK is to add a dependency to your project's build.gradle file, after you have imported the bluerangesdk-release.aar which you can find under the path bluerangesdk/build/outputs/aar.
 ```gradle
 dependencies {
     compile project(':bluerangesdk')
