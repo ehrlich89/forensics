@@ -279,6 +279,52 @@ BeaconMessageAggregator aggregator = new BeaconMessageAggregator(Tracer.getInsta
 ```
 
 #### Triggering
+In some cases you want to trigger actions, if certain time or location specfic conditions are fulfilled. In this case you can use the BeaconMessageActionTrigger class
+
+```java
+BeaconMessageActionTrigger actionTrigger = new BeaconMessageActionTrigger(scanner, new BeaconActionRegistry() {
+    @Override
+    public boolean isAvailable(BeaconMessage message) throws UnsupportedMessageException {
+        return false;
+    }
+    
+    @Override
+    public List<BeaconAction> getBeaconActionsForMessage(BeaconMessage message)
+            throws RegistryNotAvailableException, UnsupportedMessageException {
+        List<BeaconAction> actions = new ArrayList<BeaconAction>();
+        if (message instanceof IBeaconMessage) {
+            IBeaconMessage iBeaconMessage = (IBeaconMessage) message;
+            if (iBeaconMessage.getMinor() == 5) {
+                BeaconAction action = new BeaconAction("unique-identifier");
+                action.setDistanceThreshold(5);
+                action.setValidityBegins(new Date());
+                action.setValidityEnds(new Date(new Date().getTime() + 5 * 1000));
+                action.setReleaseLockAfterMs(5 * 1000);
+    
+                actions.add(action);
+            }
+        }
+        return actions;
+    }
+    });
+    
+    actionTrigger.addActionListener(new BeaconActionListener() {
+    @Override
+    public void onActionTriggered(BeaconAction action) {
+        if (action instanceof RelutionContentAction) {
+            Log.d("TriggerSystemTest", "Content action triggered.");
+        } else if (action instanceof RelutionTagAction) {
+            RelutionTagAction tagAction = (RelutionTagAction) action;
+            RelutionTagVisit tag = tagAction.getTag();
+            Log.d("TriggerSystemTest", "Collected tag: " + tag.toString());
+        }
+    }
+    });
+    
+    // 4. Start trigger and scanner
+    actionTrigger.start();
+    scanner.startScanning();
+```
 
 #### Advertising
 To periodically send advertising messages, just call one of the ```start``` methods of the ```BeaconAdvertiser``` class:
