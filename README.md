@@ -31,7 +31,7 @@ Currently the following features are supported:
 - Messages can be saved persistently and postprocessed at a later time. The log will be persisted while consuming a minimum amount of energy.
 
 #### Reporting
-- Messages logged over a long period of time can be transformed to status reports and periodically sent to a beacon management platform. A webservice e.g. can use these reports to estimate the device's position, generate a heatmap or realize indoor location services.
+- Messages logged over a long period of time can be transformed to status reports and periodically sent to a beacon management platform. A webservice e.g. can use these reports to estimate the device's position, generate a heatmap or realize indoor positioning.
 
 #### Aggregating
 - A sequence of beacon messages can be aggregated to average the RSSI. The averaging algorithm uses a linearly weighted moving average filter.
