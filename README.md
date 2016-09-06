@@ -50,7 +50,7 @@ The service layer builds on top of the core layer and provides some high level s
 - to send heatmap reports to Relution.
 
 ## API reference
-- All currently supported features are combined in the ```RelutionIoTService``` class. However, if you want to build your app independently from Relution, you can build on top of the core components. To get an overview of the SDK's packages and classes, please have a look at the documentation in the ```/docs``` directory.
+- All currently supported features are combined in the ```RelutionIoTService``` class. However, if you want to build your app independently from Relution, you can directly build on top of the core layer and attach your own components to the message processing architecture. To get an overview of the SDK's packages and classes, please have a look at the documentation in the ```/docs``` directory.
 
 ## Getting started
 ### Android
