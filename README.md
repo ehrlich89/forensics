@@ -3,7 +3,7 @@
 
 ## Overview
 The BlueRange SDK is a library for Android and iOS that can be used to write mobile apps that interact with beacons.
-The SDK is specifically designed to interact with beacons managed by the Relution IoT platform. The Relution beacon management platform allows you to monitor, update and control beacons running the FruityMesh firmware. Beacons that run on FruityMesh build up a network of beacons and can therefore be managed and updated a lot easier.
+The SDK is specifically designed to interact with beacons managed by the Relution IoT platform. This beacon management platform allows you to monitor, update and control beacons running the FruityMesh firmware. Beacons that run on FruityMesh build up a network of beacons and can therefore be managed and updated a lot easier.
 
 ## Features
 Currently the BlueRange SDK supports iOS devices that run at least on iOS 8.0 and Android devices with at least API level 4.3. However, to enable advertising, Android devices must additionally support the Bluetooth LE peripheral mode and run at least on API level 21.
