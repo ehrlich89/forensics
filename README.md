@@ -273,13 +273,13 @@ Message aggregation can be useful, if you want to reduce the overall message thr
 
 ```java
 BeaconMessageAggregator aggregator = new BeaconMessageAggregator(Tracer.getInstance(), beaconScanner);
-        aggregator.setAggregationMode(BeaconMessageAggregator.AggregationMode.SLIDING_WINDOW);
-        aggregator.setAggregateDurationInMs(5 * 1000);
-        aggregator.setAverageFilter(new LinearWeightedMovingAverageFilter(0.3f));
+aggregator.setAggregationMode(BeaconMessageAggregator.AggregationMode.SLIDING_WINDOW);
+aggregator.setAggregateDurationInMs(5 * 1000);
+aggregator.setAverageFilter(new LinearWeightedMovingAverageFilter(0.3f));
 ```
 
 #### Triggering
-In some cases you want to trigger actions, if certain time or location specfic conditions are fulfilled. In this case you can use the BeaconMessageActionTrigger class
+In some cases you want to trigger actions, if certain time or location specfic conditions are fulfilled. In this case you can use the BeaconMessageActionTrigger class. To define the message-action mapping you have to pass a BeaconActionRegistry to the trigger, as shown below. 
 
 ```java
 BeaconMessageActionTrigger actionTrigger = new BeaconMessageActionTrigger(scanner, new BeaconActionRegistry() {
