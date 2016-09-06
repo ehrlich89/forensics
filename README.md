@@ -62,7 +62,6 @@ dependencies {
 }
 ```
 
-bluerangesdk/build/outputs
 #### Manual import
 - Start the Android IDE of your choise (e.g. Android Studio) and import the project contained in the unpacked folder. To do this with Android Studio, just click on "Open an existing Android project" right after Android Studio has been started and choose the unpacked folder.
 - After the project has been imported, just have a look at the project structure on the left side bar.
