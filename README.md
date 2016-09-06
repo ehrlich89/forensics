@@ -63,7 +63,7 @@ dependencies {
 ```
 
 #### Manual import
-- If you also want to include the source code, please follow these instructions: 
+- If you also want to include the source code, you have to manually import the library: 
 - Start the Android IDE of your choise (e.g. Android Studio) and import the project contained in the unpacked folder. To do this with Android Studio, just click on "Open an existing Android project" right after Android Studio has been started and choose the unpacked folder.
 - After the project has been imported, just have a look at the project structure on the left side bar.
 - As you can see, the ```com.mway.bluerange.android``` package contains two subpackages ```examples``` and ```sdk```.
