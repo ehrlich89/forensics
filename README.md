@@ -54,8 +54,17 @@ The service layer builds on top of the core layer and provides some high level s
 
 ## Getting started
 ### Android
-- In order to get started with your own app, you first need to unzip the "BlueRangeSDK_Android.zip".
-- Next, start the Android IDE of your choise (e.g. Android Studio) and import the project contained in the unpacked folder. To do this with Android Studio, just click on "Open an existing Android project" right after Android Studio has been started and choose the unpacked folder.
+#### AAR import
+- The easiest way to import the BlueRangeSDK is to add a dependendency to your project's build.gradle file, after you have imported the bluerangesdk-release.aar which you can find under the path bluerangesdk/build/outputs/aar.
+```gradle
+dependencies {
+    compile project(':bluerangesdk')
+}
+```
+
+bluerangesdk/build/outputs
+#### Manual import
+- Start the Android IDE of your choise (e.g. Android Studio) and import the project contained in the unpacked folder. To do this with Android Studio, just click on "Open an existing Android project" right after Android Studio has been started and choose the unpacked folder.
 - After the project has been imported, just have a look at the project structure on the left side bar.
 - As you can see, the ```com.mway.bluerange.android``` package contains two subpackages ```examples``` and ```sdk```.
 - The ```sdk``` package contains the SDK's source code. So, if you are interested in the SDK implementation, you should have a closer look at these packages.
