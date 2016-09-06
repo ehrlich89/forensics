@@ -97,7 +97,7 @@ Next to the tabs "iBeacon", "Relution Tags" and "JoinMe", the "Visited", "Conten
 ![alt tag](https://raw.githubusercontent.com/ehrlich89/images/master/05_Action2.png)
 
 ## Sample code
-The following section shows you the most important SDK features.
+The following section shows you some code samples that may help you to integrate this SDK to your app.
 
 ### Relution IoT Services
 #### Service configuration
