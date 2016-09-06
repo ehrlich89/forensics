@@ -252,12 +252,7 @@ logger.addReceiver(new BeaconMessageStreamNodeReceiver() {
 
     @Override
     public void onReceivedMessage(BeaconMessageStreamNode senderNode, BeaconMessage message) {
-        BeaconMessageLogger logger = (BeaconMessageLogger) senderNode;
-        Log.d("Test", "onMeshInactive");
-        beaconScanner.stopScanning();
-        BeaconMessageLog log1 = logger.readLog();
-        String printString = log1.print();
-        Log.d("Test", printString);
+        // Do something
     }
 
     @Override
@@ -272,6 +267,18 @@ for (BeaconMessage message : logger) {
     // Some something
 }
 ```
+
+#### Aggregating
+Message aggregation can be useful, if you want to reduce the overall message throughput or if you want to average the RSSI. Currently the BeaconMessageAggregator supports two modes, a packet mode and a sliding window mode. The packet mode combines all equal messages received in aggregateDuration milliseconds into one, whereas the sliding window mode keeps the same number of messages in the stream while averaging the RSSI using the average filter:
+
+```java
+BeaconMessageAggregator aggregator = new BeaconMessageAggregator(Tracer.getInstance(), beaconScanner);
+        aggregator.setAggregationMode(BeaconMessageAggregator.AggregationMode.SLIDING_WINDOW);
+        aggregator.setAggregateDurationInMs(5 * 1000);
+        aggregator.setAverageFilter(new LinearWeightedMovingAverageFilter(0.3f));
+```
+
+#### Triggering
 
 #### Advertising
 To periodically send advertising messages, just call one of the ```start``` methods of the ```BeaconAdvertiser``` class:
