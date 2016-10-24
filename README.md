@@ -491,9 +491,17 @@ beaconScanner.setConfig(config);
 ```
 
 If you need to consume all messages saved in the log in one step, you can use the ```readLog```method. However, if your log contains a large number of messages, you should better use the log iterator or the for each loop to read the messages out to reduce the memory consumption. The iterator will load the messages in the order they have been saved and is optimized for thread-safety and performance.
+##### Android
 ```java
 for (BeaconMessage message : logger) {
-    // Some something
+    // Do something
+}
+```
+##### iOS
+```objective-c
+id<LogIterator>* logIterator = [self->_logger getLogIterator];
+while ([logIterator hasNext]) {
+    BeaconMessage* message = [logIterator next];
 }
 ```
 
