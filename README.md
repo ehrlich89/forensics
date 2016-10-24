@@ -188,6 +188,7 @@ new RelutionIoTService()
 #### Relution beacon calibration
 To calibrate an iBeacon inside your app (like in the reference application), just place your device 1 meter away from the beacon
 and send an averaged RSSI value of the iBeacon message to Relution by calling ```calibrateIBeacon```, as shown below:
+##### Android
 ```java
 RelutionIoTService.addBeaconMessageObserver(new RelutionIoTService.BeaconMessageObserver() {
   @Override
@@ -202,6 +203,34 @@ RelutionIoTService.addBeaconMessageObserver(new RelutionIoTService.BeaconMessage
     }
   }
 });
+```
+##### iOS
+```objective-c
+// .h
+#import "RelutionIoTService.h"
+@interface <YourClass> : NSObject<BeaconMessageObserver>
+@property RelutionIoTService* relutionIoTService;
+@end
+
+// .m
+#import "RelutionIoTService.h"
+#import "IBeaconMessage.h"
+
+- (void) registerBeaconMessageObserver {
+    [RelutionIoTService addBeaconMessageObserver:self];
+}
+
+- (void) onMessageReceived: (BeaconMessage*) message {
+    // Do something with the message.
+    if ([message isKindOfClass:IBeaconMessage]) {
+        // Get the iBeacon message
+        IBeaconMessage* iBeaconMessage = (IBeaconMessage*)message;
+        // User moves to a place 1 meter away from the beacon that sends the iBeacon message...
+        // Calibrate the iBeacon message.
+        [RelutionIoTService calibrateIBeacon:iBeaconMessage.iBeacon withTxPower:iBeaconMessage.rssi];
+    }
+}
+
 ```
 
 #### Relution campaigns
