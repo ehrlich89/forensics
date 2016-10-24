@@ -508,12 +508,38 @@ while ([logIterator hasNext]) {
 
 #### Aggregating
 Message aggregation can be useful, if you want to reduce the overall message throughput or if you want to average the RSSI. Currently the BeaconMessageAggregator supports two modes, a packet mode and a sliding window mode. The packet mode combines a stream of equivalent messages received in aggregateDuration milliseconds into one, whereas the sliding window mode keeps the same number of messages in the stream while averaging the RSSI using an average filter:
-
+##### Android
 ```java
 BeaconMessageAggregator aggregator = new BeaconMessageAggregator(Tracer.getInstance(), beaconScanner);
 aggregator.setAggregationMode(BeaconMessageAggregator.AggregationMode.SLIDING_WINDOW);
 aggregator.setAggregateDurationInMs(5 * 1000);
 aggregator.setAverageFilter(new LinearWeightedMovingAverageFilter(0.3f));
+```
+##### iOS
+```objective-c
+// .h
+#import "BlueRangeSDK/BeaconMessageScanner.h"
+#import "BlueRangeSDK/BeaconMessageScannerConfig.h"
+#import "BlueRangeSDK/BeaconMessageAggregator.h"
+#import "BlueRangeSDK/LinearWeightedMovingAverageFilter.h"
+
+- (void) startAggregating {
+    // Configure scanner
+    self->_scanner = [[BeaconMessageScanner alloc] initWithTracer:[Tracer getInstance]];
+    BeaconMessageScannerConfig *config = [self->_scanner config];
+    [config scanIBeacon:@"b9407f30-f5f8-466e-aff9-25556b57fe6d" major:45 minor:1];
+    [config scanIBeacon:@"c9407f30-f5f8-466e-aff9-25556b57fe6d" major:46 minor:2];
+    [config scanRelutionTagsV1:[[NSArray alloc] initWithObjects:
+                                [NSNumber numberWithLong:13], [NSNumber numberWithLong:2], nil]];
+    [config scanJoinMeMessages];
+
+    // Configure aggregator
+    BeaconMessageAggregator* aggregator = [[BeaconMessageAggregator alloc]
+                                           initWithTracer:[Tracer.getInstance] andSender:self->_scanner];
+    [aggregator setAggregationMode:AGGREGATION_MODE_SLIDING_WINDOW];
+    [aggregator setAggregateDurationInMs:5*1000];
+    [aggregator setAverageFilter:[[LinearWeightedMovingAverageFilter alloc] initWithC:0.3]];
+}
 ```
 
 #### Triggering
