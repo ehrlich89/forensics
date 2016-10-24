@@ -592,6 +592,7 @@ BeaconMessageActionTrigger actionTrigger = new BeaconMessageActionTrigger(scanne
 
 #### Advertising
 To periodically send advertising messages, just call one of the ```start``` methods of the ```BeaconAdvertiser``` class:
+##### Android
 ```java
 public class AdvertisingService extends BlueRangeService {
     @Override
@@ -604,6 +605,16 @@ public class AdvertisingService extends BlueRangeService {
             e.printStackTrace();
         }
     }
+}
+```
+##### iOS
+```objective-c
+// .m
+#import "BlueRangeSDK/BeaconAdvertiser.h"
+
+- (void) startAdvertising {
+    self.beaconAdvertiser = [[BeaconAdvertiser alloc] init];
+    [self.beaconAdvertiser startAdvertisingDiscoveryMessage];
 }
 ```
 
