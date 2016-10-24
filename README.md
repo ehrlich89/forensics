@@ -152,10 +152,9 @@ new RelutionIoTService()
 // .h
 #import "RelutionIoTService.h"
 @interface <YourClass> : NSObject<LoginObserver>
-
 @property RelutionIoTService* relutionIoTService;
-
 @end
+
 // .m
 #import "RelutionIoTService.h"
 
