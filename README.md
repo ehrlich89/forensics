@@ -502,6 +502,7 @@ for (BeaconMessage message : logger) {
 id<LogIterator>* logIterator = [self->_logger getLogIterator];
 while ([logIterator hasNext]) {
     BeaconMessage* message = [logIterator next];
+    // Do something
 }
 ```
 
