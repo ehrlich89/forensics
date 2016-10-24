@@ -339,7 +339,7 @@ Use the core layer, if you want to build apps independently from Relution.
 #### Scanning
 If you want to scan for specific beacon messages, create an instance of ```BeaconMessageScanner``` and
 configure it, as shown below. You can change the scanner's configuration even if it has already been started. To get informed about incoming messages, register a ```BeaconMessageStreamNodeReceiver```.
-
+##### Android
 ```java
 final BeaconMessageScanner beaconScanner = new BeaconMessageScanner(this);
 final BeaconMessageScannerConfig config = new BeaconMessageScannerConfig(beaconScanner);
@@ -366,6 +366,40 @@ beaconScanner.addReceiver(new BeaconMessageStreamNodeReceiver() {
   }
 });
 beaconScanner.startScanning();
+```
+##### iOS
+```objective-c
+// .h
+#import "BlueRangeSDK/BeaconMessageScanner.h"
+#import "BlueRangeSDK/BeaconMessageScannerConfig.h"
+
+@interface SystemTestsApplication : NSObject<BeaconMessageStreamNodeReceiver>
+@property (strong) IBeaconMessageScanner* scanner;
+@end
+
+// .m
+#import "BlueRangeSDK/BeaconMessageScanner.h"
+#import "BlueRangeSDK/BeaconMessageScannerConfig.h"
+
+- (void) startScanning {
+    self->_scanner = [[BeaconMessageScanner alloc] initWithTracer:[Tracer getInstance]];
+    BeaconMessageScannerConfig *config = [self->_scanner config];
+    [config scanIBeacon:@"b9407f30-f5f8-466e-aff9-25556b57fe6d" major:45 minor:1];
+    [config scanIBeacon:@"c9407f30-f5f8-466e-aff9-25556b57fe6d" major:46 minor:2];
+    [config scanRelutionTagsV1:[[NSArray alloc] initWithObjects:
+                                [NSNumber numberWithLong:13], [NSNumber numberWithLong:2], nil]];
+    [config scanJoinMeMessages];
+    [self->_scanner addReceiver:self];
+    [self->_scanner startScanning];
+}
+
+- (void) onMeshActive: (BeaconMessageStreamNode *) senderNode {
+    // Do something
+}
+
+- (void) onReceivedMessage: (BeaconMessageStreamNode *) senderNode withMessage: (BeaconMessage*) message {
+    // Do something
+}
 ```
 
 #### Logging
