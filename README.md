@@ -74,10 +74,7 @@ dependencies {
 
 ### iOS
 #### Binary import
-- If you do not need the source files and just want to import the SDK binaries to your Xcode project, please include the BlueRangeSDK.framework file to the "Embedded Binaries" of your target. To do this, select your Xcode project target, and press the "+" button in the "Embedded Binaries" section in the "General" tab. Then, click on "Add Other" and add the BlueRangeSDK.framework file. The header files can be imported using the following import scheme:
-```objective-c
-#import "BlueRangeSDK/BeaconAdvertiser.h"
-```
+- If you do not need the source files and just want to import the SDK binaries to your Xcode project, please include the BlueRangeSDK.framework file to the "Embedded Binaries" of your target. To do this, select your Xcode project target, and press the "+" button in the "Embedded Binaries" section in the "General" tab. Then, click on "Add Other" and add the BlueRangeSDK.framework file.
  
 #### Source code import
 - To use the iOS SDK, first unzip the "BlueRangeSDK_iOS.zip".
@@ -88,6 +85,11 @@ dependencies {
 - In the "examples" folder you can see, how the SDK components can be used within your app code. The ```ExampleApplication```class contains some basic examples, of how the background scanning and advertising services can be started.
 - The folder "nearyou" contains an example app, similar to the one contained in the Android SDK. You can test the app, if you have an iOS 8.0 device. In order to start the app, you only need to build, deploy and start the application by clicking on the "Run" button on the top left corner of Xcode. After the app has been built and deployed, you should see the example app on your device listing some sample product names how it could look in an app using this SDK.
 - To experiment with the SDK, you can have a look at the source code of the ```ExampleApplication``` which shows you how to use the core components of the SDK.
+
+The header files of the BlueRange SDK can be imported using the following import scheme:
+```objective-c
+#import "BlueRangeSDK/<HeaderFile>.h"
+```
 
 ## Reference application
 
