@@ -150,13 +150,13 @@ new RelutionIoTService()
 ##### iOS
 ```objective-c
 // .h
-#import "RelutionIoTService.h"
+#import "BlueRangeSDK/RelutionIoTService.h"
 @interface <YourClass> : NSObject<LoginObserver>
 @property RelutionIoTService* relutionIoTService;
 @end
 
 // .m
-#import "RelutionIoTService.h"
+#import "BlueRangeSDK/RelutionIoTService.h"
 
 - (void) startRelutionIoTService {
     NSString* baseUrl = @"http://iot.relution.io";
@@ -208,14 +208,14 @@ RelutionIoTService.addBeaconMessageObserver(new RelutionIoTService.BeaconMessage
 ##### iOS
 ```objective-c
 // .h
-#import "RelutionIoTService.h"
+#import "BlueRangeSDK/RelutionIoTService.h"
 @interface <YourClass> : NSObject<BeaconMessageObserver>
 @property RelutionIoTService* relutionIoTService;
 @end
 
 // .m
-#import "RelutionIoTService.h"
-#import "IBeaconMessage.h"
+#import "BlueRangeSDK/RelutionIoTService.h"
+#import "BlueRangeSDK/IBeaconMessage.h"
 
 - (void) registerBeaconMessageObserver {
     [RelutionIoTService addBeaconMessageObserver:self];
@@ -261,7 +261,7 @@ RelutionIoTService.addBeaconTagActionObserver(new RelutionIoTService.BeaconTagAc
 ##### iOS
 ```objective-c
 // .h
-#import "RelutionIoTService.h"
+#import "BlueRangeSDK/RelutionIoTService.h"
 @interface <YourClass> : NSObject<
     BeaconNotificationActionObserver,
     BeaconContentActionObserver,
@@ -309,7 +309,7 @@ RelutionIoTService.addRelutionTagObserver(new RelutionIoTService.RelutionTagObse
 ##### iOS
 ```objective-c
 // .h
-#import "RelutionIoTService.h"
+#import "BlueRangeSDK/RelutionIoTService.h"
 @interface <YourClass> : NSObject<
     RelutionTagObserver>
 @property RelutionIoTService* relutionIoTService;
