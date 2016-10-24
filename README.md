@@ -293,7 +293,7 @@ RelutionIoTService.addBeaconTagActionObserver(new RelutionIoTService.BeaconTagAc
 ```
 #### Relution tags
 If you want to make use of Relution Tags, register a ```RelutionTagObserver``` to get informed about all received Relution Tags. If you need to have access to the name or description of a Relution Tag, just call ```getTagInfoForTag```:
-
+##### Android
 ```java
 RelutionIoTService.addRelutionTagObserver(new RelutionIoTService.RelutionTagObserver() {
   @Override
@@ -305,6 +305,32 @@ RelutionIoTService.addRelutionTagObserver(new RelutionIoTService.RelutionTagObse
     }
   }
 });
+```
+##### iOS
+```objective-c
+// .h
+#import "RelutionIoTService.h"
+@interface <YourClass> : NSObject<
+    RelutionTagObserver>
+@property RelutionIoTService* relutionIoTService;
+@end
+
+// .m
+#import "BlueRangeSDK/RelutionIoTService.h"
+#import "BlueRangeSDK/RelutionTagInfoRegistry.h"
+#import "BlueRangeSDK/RelutionTagMessage.h"
+
+- (void) registerRelutionTagObserver {
+    [RelutionIoTService addRelutionTagObserver:self];
+}
+
+- (void) onTagReceived: (long) tag message: (RelutionTagMessage*) message {
+    @try {
+        [RelutionIoTService getTagInfoForTag:tag];
+    } @catch(RelutionTagInfoRegistryNoInfoFound* exception) {
+        // ...
+    }
+}
 ```
 
 ### Core
