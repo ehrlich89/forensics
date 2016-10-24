@@ -54,7 +54,7 @@ The service layer builds on top of the core layer and provides some high level s
 
 ## Getting started
 ### Android
-#### AAR import
+#### Binary import
 - The easiest way to import the BlueRangeSDK is to add a dependency to your project's build.gradle file, after you have imported the bluerangesdk-release.aar which you can find under the path bluerangesdk/build/outputs/aar.
 ```gradle
 dependencies {
@@ -62,7 +62,7 @@ dependencies {
 }
 ```
 
-#### Manual import
+#### Source code import
 - If you also want to include the source code, you have to manually import the library: 
 - Start the Android IDE of your choise (e.g. Android Studio) and import the project contained in the unpacked folder. To do this with Android Studio, just click on "Open an existing Android project" right after Android Studio has been started and choose the unpacked folder.
 - After the project has been imported, just have a look at the project structure on the left side bar.
@@ -73,6 +73,10 @@ dependencies {
 - The best way to start writing your own app would be to replace all classes of the NearYou app and transform the code to your own needs.
 
 ### iOS
+#### Binary import
+If you only want to import the binaries to your Xcode project, please include the BlueRangeSDK.framework file to the "Embedded Binaries" secion of your target. To do this, select the target in your Xcode project, and press the "+" button in the "Embedded Binaries" section in the "General" tab. Then, click on "Add Other" and add the BlueRangeSDK.framework.
+ 
+#### Source code import
 - To use the iOS SDK, first unzip the "BlueRangeSDK_iOS.zip".
 - Next, start Xcode and import the project that is contained in the unpacked folder. To do this, just click on "Open another project" on the "Welcome to Xcode" screen and choose the BlueRange_SDK_iOS.xcodeproj contained inside the subfolder "bluerangesdk".
 - After the project has been imported, just have a look at the project structure on the left side bar.
