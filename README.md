@@ -400,10 +400,15 @@ beaconScanner.startScanning();
 - (void) onReceivedMessage: (BeaconMessageStreamNode *) senderNode withMessage: (BeaconMessage*) message {
     // Do something
 }
+
+- (void) onMeshInactive: (BeaconMessageStreamNode *) senderNode {
+    // Do something
+}
 ```
 
 #### Logging
 If you want to process scanned messages at a later time, it might be useful to save them on the device persistently and read them out later. To do this, you can use the ```BeaconMessageLogger``` which provides you an easy-to-use and thread-safe interface. In most cases you will pass the scanner to the logger's constructor. However, if your message processing pipeline is more complex, you can pass any message processing object which implements the ```BeaconMessageStreamNode``` interface. The received messages will be instantly passed to all receivers that have attached to the logger. Thus, you can use the logger to silently persist the message stream:
+##### Android
 ```java
 // Configure Beacon scanner
 final BeaconMessageScanner beaconScanner = new BeaconMessageScanner(context);
@@ -428,6 +433,61 @@ logger.addReceiver(new BeaconMessageStreamNodeReceiver() {
     public void onMeshInactive(BeaconMessageStreamNode senderNode) {}
 });
 beaconScanner.startScanning();
+```
+##### iOS
+```objective-c
+// Configure Beacon scanner
+final BeaconMessageScanner beaconScanner = new BeaconMessageScanner(context);
+BeaconMessageScannerConfig config = new BeaconMessageScannerConfig(beaconScanner);
+config.scanIBeacon("b9407f30-f5f8-466e-aff9-25556b57fe6d", 45, 1);
+config.scanIBeacon("c9407f30-f5f8-466e-aff9-25556b57fe6d", 46, 2);
+config.scanRelutionTagsV1(new long[]{13, 2});
+beaconScanner.setConfig(config);
+
+// Configure BeaconMessageLogger
+// .h
+#import "BlueRangeSDK/BeaconMessageScanner.h"
+#import "BlueRangeSDK/BeaconMessageScannerConfig.h"
+#import "BlueRangeSDK/BeaconMessageLogger.h"
+
+@interface SystemTestsApplication : NSObject<BeaconMessageStreamNodeReceiver>
+@property (strong) IBeaconMessageScanner* scanner;
+@property (strong) BeaconMessageLogger* logger;
+@end
+
+// .m
+#import "BlueRangeSDK/BeaconMessageScanner.h"
+#import "BlueRangeSDK/BeaconMessageScannerConfig.h"
+#import "BlueRangeSDK/BeaconMessageLogger.h"
+
+- (void) startLogging {
+    // Configure Beacon scanner
+    self->_scanner = [[BeaconMessageScanner alloc] initWithTracer:[Tracer getInstance]];
+    BeaconMessageScannerConfig *config = [self->_scanner config];
+    [config scanIBeacon:@"b9407f30-f5f8-466e-aff9-25556b57fe6d" major:45 minor:1];
+    [config scanIBeacon:@"c9407f30-f5f8-466e-aff9-25556b57fe6d" major:46 minor:2];
+    [config scanRelutionTagsV1:[[NSArray alloc] initWithObjects:
+                                [NSNumber numberWithLong:13], [NSNumber numberWithLong:2], nil]];
+    [config scanJoinMeMessages];
+    
+    // Configure BeaconMessageLogger
+    self->_logger = [[BeaconMessageLogger alloc] initWithSender:self->_scanner];
+    
+    [self->_logger addReceiver:self];
+    [self->_scanner startScanning];
+}
+
+- (void) onMeshActive: (BeaconMessageStreamNode *) senderNode {
+    // Do something
+}
+
+- (void) onReceivedMessage: (BeaconMessageStreamNode *) senderNode withMessage: (BeaconMessage*) message {
+    // Do something
+}
+
+- (void) onMeshInactive: (BeaconMessageStreamNode *) senderNode {
+    // Do something
+}
 ```
 
 If you need to consume all messages saved in the log in one step, you can use the ```readLog```method. However, if your log contains a large number of messages, you should better use the log iterator or the for each loop to read the messages out to reduce the memory consumption. The iterator will load the messages in the order they have been saved and is optimized for thread-safety and performance.
