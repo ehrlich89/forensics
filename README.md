@@ -164,7 +164,8 @@ new RelutionIoTService()
     NSString* password = @"your_password";
     
     self->_relutionIoTService = [[RelutionIoTService alloc] init];
-    [self->_relutionIoTService setLoginData:baseUrl andUsername:username andPassword:password andLoginObserver:self];
+    [self->_relutionIoTService setLoginData:baseUrl 
+        andUsername:username andPassword:password andLoginObserver:self];
     [self->_relutionIoTService setLoggingEnabled:true]; // Logging
     [self->_relutionIoTService setCampaignActionTriggerEnabled:true]; // Campaigns
     [self->_relutionIoTService setHeatmapGenerationEnabled:true]; // Heatmap
