@@ -116,6 +116,7 @@ If your app needs a full integration with Relution, just start the ```RelutionIo
 - Heatmap: Turn on this feature, if you want the beacons to estimate the number of devices and generate a heatmap from out of this information.
 - Logging: Turn logging on, if you want the SDK to log to the console. Turn this off to increase the performance.
 
+##### Android
 ```java
 String baseUrl = "https://iot.relution.io";
 String username = "your_username";
@@ -145,6 +146,44 @@ new RelutionIoTService()
     .setHeatmapGenerationEnabled(true) // Heatmap
     .setHeatmapReportingEnabled(true) // Analytics
     .startAsThread(context.getApplicationContext());
+```
+##### iOS
+```objective-c
+// .h
+#import "RelutionIoTService.h"
+@interface <YourClass> : NSObject<LoginObserver>
+
+@property RelutionIoTService* relutionIoTService;
+
+@end
+// .m
+#import "RelutionIoTService.h"
+
+- (void) startRelutionIoTService {
+    NSString* baseUrl = @"http://iot.relution.io";
+    NSString* username = @"your_username";
+    NSString* password = @"your_password";
+    
+    self->_relutionIoTService = [[RelutionIoTService alloc] init];
+    [self->_relutionIoTService setLoginData:baseUrl andUsername:username andPassword:password andLoginObserver:self];
+    [self->_relutionIoTService setLoggingEnabled:true]; // Logging
+    [self->_relutionIoTService setCampaignActionTriggerEnabled:true]; // Campaigns
+    [self->_relutionIoTService setHeatmapGenerationEnabled:true]; // Heatmap
+    [self->_relutionIoTService setHeatmapReportingEnabled:true]; // Analytics
+    [self->_relutionIoTService start];
+}
+
+- (void) onLoginSucceeded {
+    
+}
+
+- (void) onLoginFailed {
+    
+}
+
+- (void) onRelutionError {
+    
+}
 ```
 
 #### Relution beacon calibration
