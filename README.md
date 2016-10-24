@@ -74,7 +74,10 @@ dependencies {
 
 ### iOS
 #### Binary import
-If you only want to import the binaries to your Xcode project, please include the BlueRangeSDK.framework file to the "Embedded Binaries" secion of your target. To do this, select the target in your Xcode project, and press the "+" button in the "Embedded Binaries" section in the "General" tab. Then, click on "Add Other" and add the BlueRangeSDK.framework.
+- If you do not need the source files and just want to import the SDK binaries to your Xcode project, please include the BlueRangeSDK.framework file to the "Embedded Binaries" of your target. To do this, select your Xcode project target, and press the "+" button in the "Embedded Binaries" section in the "General" tab. Then, click on "Add Other" and add the BlueRangeSDK.framework file. The header files can be imported using the following import scheme:
+```objective-c
+#import "BlueRangeSDK/BeaconAdvertiser.h"
+```
  
 #### Source code import
 - To use the iOS SDK, first unzip the "BlueRangeSDK_iOS.zip".
