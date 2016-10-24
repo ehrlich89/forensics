@@ -88,7 +88,7 @@ dependencies {
 
 The header files of the BlueRange SDK can be imported using the following import scheme:
 ```objective-c
-#import "BlueRangeSDK/<HeaderFile>.h"
+#import <BlueRangeSDK/<HeaderFile>.h>
 ```
 
 ## Reference application
@@ -150,13 +150,13 @@ new RelutionIoTService()
 ##### iOS
 ```objective-c
 // .h
-#import "BlueRangeSDK/RelutionIoTService.h"
+#import <BlueRangeSDK/RelutionIoTService.h>
 @interface <YourClass> : NSObject<LoginObserver>
 @property RelutionIoTService* relutionIoTService;
 @end
 
 // .m
-#import "BlueRangeSDK/RelutionIoTService.h"
+#import <BlueRangeSDK/RelutionIoTService.h>
 
 - (void) startRelutionIoTService {
     NSString* baseUrl = @"http://iot.relution.io";
@@ -208,14 +208,14 @@ RelutionIoTService.addBeaconMessageObserver(new RelutionIoTService.BeaconMessage
 ##### iOS
 ```objective-c
 // .h
-#import "BlueRangeSDK/RelutionIoTService.h"
+#import <BlueRangeSDK/RelutionIoTService.h>
 @interface <YourClass> : NSObject<BeaconMessageObserver>
 @property RelutionIoTService* relutionIoTService;
 @end
 
 // .m
-#import "BlueRangeSDK/RelutionIoTService.h"
-#import "BlueRangeSDK/IBeaconMessage.h"
+#import <BlueRangeSDK/RelutionIoTService.h>
+#import <BlueRangeSDK/IBeaconMessage.h>
 
 - (void) registerBeaconMessageObserver {
     [RelutionIoTService addBeaconMessageObserver:self];
@@ -261,7 +261,7 @@ RelutionIoTService.addBeaconTagActionObserver(new RelutionIoTService.BeaconTagAc
 ##### iOS
 ```objective-c
 // .h
-#import "BlueRangeSDK/RelutionIoTService.h"
+#import <BlueRangeSDK/RelutionIoTService.h>
 @interface <YourClass> : NSObject<
     BeaconNotificationActionObserver,
     BeaconContentActionObserver,
@@ -270,7 +270,7 @@ RelutionIoTService.addBeaconTagActionObserver(new RelutionIoTService.BeaconTagAc
 @end
 
 // .m
-#import "BlueRangeSDK/RelutionIoTService.h"
+#import <BlueRangeSDK/RelutionIoTService.h>
 
 - (void) registerCampaignActionObservers {
     // Get informed about to campaign actions.
@@ -309,16 +309,16 @@ RelutionIoTService.addRelutionTagObserver(new RelutionIoTService.RelutionTagObse
 ##### iOS
 ```objective-c
 // .h
-#import "BlueRangeSDK/RelutionIoTService.h"
+#import <BlueRangeSDK/RelutionIoTService.h>
 @interface <YourClass> : NSObject<
     RelutionTagObserver>
 @property RelutionIoTService* relutionIoTService;
 @end
 
 // .m
-#import "BlueRangeSDK/RelutionIoTService.h"
-#import "BlueRangeSDK/RelutionTagInfoRegistry.h"
-#import "BlueRangeSDK/RelutionTagMessage.h"
+#import <BlueRangeSDK/RelutionIoTService.h>
+#import <BlueRangeSDK/RelutionTagInfoRegistry.h>
+#import <BlueRangeSDK/RelutionTagMessage.h>
 
 - (void) registerRelutionTagObserver {
     [RelutionIoTService addRelutionTagObserver:self];
@@ -370,16 +370,16 @@ beaconScanner.startScanning();
 ##### iOS
 ```objective-c
 // .h
-#import "BlueRangeSDK/BeaconMessageScanner.h"
-#import "BlueRangeSDK/BeaconMessageScannerConfig.h"
+#import <BlueRangeSDK/BeaconMessageScanner.h>
+#import <BlueRangeSDK/BeaconMessageScannerConfig.h>
 
 @interface SystemTestsApplication : NSObject<BeaconMessageStreamNodeReceiver>
 @property (strong) IBeaconMessageScanner* scanner;
 @end
 
 // .m
-#import "BlueRangeSDK/BeaconMessageScanner.h"
-#import "BlueRangeSDK/BeaconMessageScannerConfig.h"
+#import <BlueRangeSDK/BeaconMessageScanner.h>
+#import <BlueRangeSDK/BeaconMessageScannerConfig.h>
 
 - (void) startScanning {
     self->_scanner = [[BeaconMessageScanner alloc] initWithTracer:[Tracer getInstance]];
@@ -436,19 +436,10 @@ beaconScanner.startScanning();
 ```
 ##### iOS
 ```objective-c
-// Configure Beacon scanner
-final BeaconMessageScanner beaconScanner = new BeaconMessageScanner(context);
-BeaconMessageScannerConfig config = new BeaconMessageScannerConfig(beaconScanner);
-config.scanIBeacon("b9407f30-f5f8-466e-aff9-25556b57fe6d", 45, 1);
-config.scanIBeacon("c9407f30-f5f8-466e-aff9-25556b57fe6d", 46, 2);
-config.scanRelutionTagsV1(new long[]{13, 2});
-beaconScanner.setConfig(config);
-
-// Configure BeaconMessageLogger
 // .h
-#import "BlueRangeSDK/BeaconMessageScanner.h"
-#import "BlueRangeSDK/BeaconMessageScannerConfig.h"
-#import "BlueRangeSDK/BeaconMessageLogger.h"
+#import <BlueRangeSDK/BeaconMessageScanner.h>
+#import <BlueRangeSDK/BeaconMessageScannerConfig.h>
+#import <BlueRangeSDK/BeaconMessageLogger.h>
 
 @interface SystemTestsApplication : NSObject<BeaconMessageStreamNodeReceiver>
 @property (strong) IBeaconMessageScanner* scanner;
@@ -456,9 +447,9 @@ beaconScanner.setConfig(config);
 @end
 
 // .m
-#import "BlueRangeSDK/BeaconMessageScanner.h"
-#import "BlueRangeSDK/BeaconMessageScannerConfig.h"
-#import "BlueRangeSDK/BeaconMessageLogger.h"
+#import <BlueRangeSDK/BeaconMessageScanner.h>
+#import <BlueRangeSDK/BeaconMessageScannerConfig.h>
+#import <BlueRangeSDK/BeaconMessageLogger.h>
 
 - (void) startLogging {
     // Configure Beacon scanner
@@ -518,10 +509,10 @@ aggregator.setAverageFilter(new LinearWeightedMovingAverageFilter(0.3f));
 ##### iOS
 ```objective-c
 // .h
-#import "BlueRangeSDK/BeaconMessageScanner.h"
-#import "BlueRangeSDK/BeaconMessageScannerConfig.h"
-#import "BlueRangeSDK/BeaconMessageAggregator.h"
-#import "BlueRangeSDK/LinearWeightedMovingAverageFilter.h"
+#import <BlueRangeSDK/BeaconMessageScanner.h>
+#import <BlueRangeSDK/BeaconMessageScannerConfig.h>
+#import <BlueRangeSDK/BeaconMessageAggregator.h>
+#import <BlueRangeSDK/LinearWeightedMovingAverageFilter.h>
 
 - (void) startAggregating {
     // Configure scanner
@@ -610,7 +601,7 @@ public class AdvertisingService extends BlueRangeService {
 ##### iOS
 ```objective-c
 // .m
-#import "BlueRangeSDK/BeaconAdvertiser.h"
+#import <BlueRangeSDK/BeaconAdvertiser.h>
 
 - (void) startAdvertising {
     self.beaconAdvertiser = [[BeaconAdvertiser alloc] init];
