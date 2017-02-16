@@ -1,5 +1,7 @@
 # Cordova BlueRange SDK Plugin
 
+A Cordova plugin makes basic functionality of the BlueRange SDK accessible for Cordova apps. Currently you can start scanning and get informed about the nearest beacons. Moreover, you can send advertising messages to the beacons to generate heatmap data.
+
 ## Using
 
 ### Create a new Cordova Project or use your existing project.
