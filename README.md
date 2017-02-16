@@ -12,7 +12,7 @@
     $ cordova plugin add <path_to_bluerange_sdk_plugin>
     
 
-### Edit the `www/js/index.js` of your project and add the following code inside `onDeviceReady`.
+### Edit the `www/js/index.js` of your project. You can use the plugin in the `onDeviceReady` function:
 
 #### Bluetooth checks
 ```js
@@ -54,6 +54,17 @@
 	});
 
 	// Will be called whenever a new beacon has become the nearest.
+	// This callback will be triggered whenever a beacon is next to the mobile phone. Currently the plugin triggers on one of the following iBeacon messages:
+	// - UUID: 710ec796-bf43-4f93-bd25-b8468e65fcf1, Major: 1, Minor:10001
+	// - UUID: 710ec796-bf43-4f93-bd25-b8468e65fcf1, Major: 1, Minor:10003
+	// - UUID: 710ec796-bf43-4f93-bd25-b8468e65fcf1, Major: 1, Minor:10004
+	// - UUID: 710ec796-bf43-4f93-bd25-b8468e65fcf1, Major: 1, Minor:10005
+	// - UUID: 710ec796-bf43-4f93-bd25-b8468e65fcf1, Major: 1, Minor:10006
+	// - UUID: 710ec796-bf43-4f93-bd25-b8468e65fcf1, Major: 1, Minor:10007
+	// - UUID: 710ec796-bf43-4f93-bd25-b8468e65fcf1, Major: 1, Minor:10008
+	// - UUID: 710ec796-bf43-4f93-bd25-b8468e65fcf1, Major: 1, Minor:10009
+	// - UUID: 710ec796-bf43-4f93-bd25-b8468e65fcf1, Major: 1, Minor:10015
+	// The minor identifier corresponds with the beacon ID passed to the Javascript callback. The callback will be triggered, when the mobile device has a distance of approximately 1 meter to the beacon.
 	bluerange.addBeaconActiveListener(function(nodeId) {
 		var message = "Beacon " + nodeId + " is active!";
 		console.log(message);
@@ -102,7 +113,7 @@
 
 ### iOS:
 - After you have added the cordova plugin to your app, open the .xcodeproj under platforms->ios. Select a development team in the "Signing" section of your project. 
-- Select your target, open the tab "General" and (remove and) add the BlueRangeSDK.framework to "Embedded binaries", which can be found in the plugins "libs" folder.
+- Select your target, open the tab "General" and (remove and) add the BlueRangeSDK.framework to "Embedded binaries", which can be found in the plugin's "libs" folder.
 - Moreover, make sure that under Build Settings -> Runpath Search Paths the value @executable_path/Frameworks is set.
 - Furthermore, for iOS 10 devices, you need to add the NSBluetoothPeripheralUsageDescription property to the info.plist file.
 - If the plugin is not correctly added to your project, please make sure that your config.xml contains the following xml element:
