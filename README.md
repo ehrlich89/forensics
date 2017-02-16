@@ -53,7 +53,6 @@
 		console.log("Starting scanning failed.");
 	});
 
-	// Will be called whenever a new beacon has become the nearest.
 	// This callback will be triggered whenever a beacon is next to the mobile phone. 
 	// Currently the plugin triggers on one of the following iBeacon messages:
 	// - UUID: 710ec796-bf43-4f93-bd25-b8468e65fcf1, Major: 1, Minor:10001
