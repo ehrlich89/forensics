@@ -54,7 +54,8 @@
 	});
 
 	// Will be called whenever a new beacon has become the nearest.
-	// This callback will be triggered whenever a beacon is next to the mobile phone. Currently the plugin triggers on one of the following iBeacon messages:
+	// This callback will be triggered whenever a beacon is next to the mobile phone. 
+	// Currently the plugin triggers on one of the following iBeacon messages:
 	// - UUID: 710ec796-bf43-4f93-bd25-b8468e65fcf1, Major: 1, Minor:10001
 	// - UUID: 710ec796-bf43-4f93-bd25-b8468e65fcf1, Major: 1, Minor:10003
 	// - UUID: 710ec796-bf43-4f93-bd25-b8468e65fcf1, Major: 1, Minor:10004
@@ -64,7 +65,9 @@
 	// - UUID: 710ec796-bf43-4f93-bd25-b8468e65fcf1, Major: 1, Minor:10008
 	// - UUID: 710ec796-bf43-4f93-bd25-b8468e65fcf1, Major: 1, Minor:10009
 	// - UUID: 710ec796-bf43-4f93-bd25-b8468e65fcf1, Major: 1, Minor:10015
-	// The minor identifier corresponds with the beacon ID passed to the Javascript callback. The callback will be triggered, when the mobile device has a distance of approximately 1 meter to the beacon.
+	// The minor identifier corresponds with the beacon ID passed to the Javascript callback. 
+	// The callback will be triggered, when the mobile device has a distance 
+	// of approximately 1 meter to the beacon.
 	bluerange.addBeaconActiveListener(function(nodeId) {
 		var message = "Beacon " + nodeId + " is active!";
 		console.log(message);
