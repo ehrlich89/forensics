@@ -12,7 +12,7 @@
     $ cordova plugin add <path_to_bluerange_sdk_plugin>
     
 
-### Edit the `www/js/index.js` of your project. You can use the plugin in the `onDeviceReady` function:
+### Edit the `www/js/index.js` of your project. You can use the following code in the `onDeviceReady` function:
 
 #### Bluetooth checks
 ```js
