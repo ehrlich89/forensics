@@ -82,23 +82,23 @@ bluerange.addScannerCallback(function(message) {
 
 #### Triggering
 ```js
-	// Starts the beacon trigger
-	bluerange.startBeaconTrigger(
-		function(successMessage) {
-			console.log("Beacon trigger start succeeded.");
-	},  function(errorMessage) {
-			console.log("Beacon trigger start failed.");
-	});
+// Starts the beacon trigger
+bluerange.startBeaconTrigger(
+	function(successMessage) {
+		console.log("Beacon trigger start succeeded.");
+},  function(errorMessage) {
+		console.log("Beacon trigger start failed.");
+});
 
-	// Called when another beacon has become the nearest one.
-	bluerange.addBeaconActiveListener(function(message) {
+// Called when another beacon has become the nearest one.
+bluerange.addBeaconActiveListener(function(message) {
 
-	});
+});
 
-	// Called when a beacon is not the nearest one anymore.
-	bluerange.addBeaconInactiveListener(function(message) {
+// Called when a beacon is not the nearest one anymore.
+bluerange.addBeaconInactiveListener(function(message) {
 
-	});
+});
 ```
 
 #### Advertising
