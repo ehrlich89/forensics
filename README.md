@@ -1,6 +1,6 @@
 # Cordova BlueRange SDK Plugin
 
-A Cordova plugin that makes the BlueRange SDK accessible for Cordova apps. This plugin provides a callback that informs you which beacon is next to your smartphone. Moreover, if you start advertising, messages will be send to the nearest beacons which generates heatmap data.
+A Cordova plugin that makes the BlueRange SDK accessible for Cordova apps. The plugin allows checking Bluetooth availability, scanning for specific beacons and broadcasting advertising messages collected by Relution SmartBeacons (necessary for computing a heatmap).
 
 ## Using
 
