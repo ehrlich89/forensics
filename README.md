@@ -72,7 +72,6 @@ bluerange.stopScanning(
 },  function(errorMessage) {
     console.log("Failed to stop scanner.");
 });
-}, 3000);
 
 // Register callback
 bluerange.addScannerCallback(function(message) {
