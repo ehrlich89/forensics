@@ -1,6 +1,6 @@
 # Cordova BlueRange SDK Plugin
 
-A Cordova plugin that makes the BlueRange SDK accessible for Cordova apps. Using the plugin you can start beacon scanning and get informed about the nearest beacons. Moreover, you can send advertising messages to the beacons to generate heatmap data.
+A Cordova plugin that makes the BlueRange SDK accessible for Cordova apps. This plugin provides a callback that informs you which beacon is next to your smartphone. Moreover, if you start advertising, messages will be send to the nearest beacons which generates heatmap data.
 
 ## Using
 
@@ -11,14 +11,14 @@ A Cordova plugin that makes the BlueRange SDK accessible for Cordova apps. Using
 ### Install the plugin
 
     $ cd hello
-    $ cordova plugin add <path_to_bluerange_sdk_plugin>
+    $ cordova plugin add <path_to_bluerange_sdk_plugin> --save
     
 
 ### Edit the `www/js/index.js` of your project. You can use the following code in the `onDeviceReady` function:
 
-#### Bluetooth checks
+#### Bluetooth availability
 ```js
-	// Checks if this device supports Bluetooth Low Energy.
+	// Checks whether this device supports Bluetooth Low Energy.
 	bluerange.isBluetoothLeSupported(function(enabled) {
 		if (enabled === "true") {
 			console.log("This device supports Bluetooth Low Energy.");
@@ -26,8 +26,8 @@ A Cordova plugin that makes the BlueRange SDK accessible for Cordova apps. Using
 			console.log("This device does not support Bluetooth Low Energy.");
 		}
 	});
-	
-	// Checks, if Bluetooth Low Energy is currently enabled.
+
+	// Checks whether Bluetooth Low Energy is enabled.
 	bluerange.isBluetoothLeEnabled(function(enabled) {
 		if (enabled === "true") {
 			console.log("Bluetooth is enabled");
@@ -36,7 +36,7 @@ A Cordova plugin that makes the BlueRange SDK accessible for Cordova apps. Using
 		}
 	});
 	
-	// Checks, if Android location services is enabled.
+	// Checks whether the Location services are enabled on Android devices.
 	bluerange.isAndroidLocationServicesEnabled(function(enabled) {
 		if (enabled === "true") {
 			console.log("Location services are enabled!");
@@ -48,44 +48,54 @@ A Cordova plugin that makes the BlueRange SDK accessible for Cordova apps. Using
 
 #### Scanning
 ```js
-	// Starts scanning beacons
-	bluerange.startScanning(function(message) {
-		console.log("Starting scanning successful.");
-	}, function(message) {
-		console.log("Starting scanning failed.");
+	// Configure scanner
+	var scanOptions = {
+		scanJoinMeMessages: true,
+		scanPeriodInMs: 200,
+		betweenScanPeriodInMs: 1
+	};
+
+	// Start scanner
+	bluerange.startScanning(scanOptions,
+		function(sucessMessage) {
+		console.log("Started scanner successfully.");
+	},  function(errorMessage) {
+		console.log("Failed to start scanner.");
 	});
 
-	// This callback will be triggered whenever a beacon is next to the mobile phone. 
-	// Before your call this method, you must start scanning.
-	// Currently the plugin triggers on one of the following iBeacon messages:
-	// - UUID: 710ec796-bf43-4f93-bd25-b8468e65fcf1, Major: 1, Minor:10001
-	// - UUID: 710ec796-bf43-4f93-bd25-b8468e65fcf1, Major: 1, Minor:10003
-	// - UUID: 710ec796-bf43-4f93-bd25-b8468e65fcf1, Major: 1, Minor:10004
-	// - UUID: 710ec796-bf43-4f93-bd25-b8468e65fcf1, Major: 1, Minor:10005
-	// - UUID: 710ec796-bf43-4f93-bd25-b8468e65fcf1, Major: 1, Minor:10006
-	// - UUID: 710ec796-bf43-4f93-bd25-b8468e65fcf1, Major: 1, Minor:10007
-	// - UUID: 710ec796-bf43-4f93-bd25-b8468e65fcf1, Major: 1, Minor:10008
-	// - UUID: 710ec796-bf43-4f93-bd25-b8468e65fcf1, Major: 1, Minor:10009
-	// - UUID: 710ec796-bf43-4f93-bd25-b8468e65fcf1, Major: 1, Minor:10015
-	// The minor identifier corresponds with the beacon ID passed to the Javascript callback. 
-	// The callback will be triggered, when the mobile device has a distance 
-	// of approximately 1 meter to the beacon.
-	bluerange.addBeaconActiveListener(function(nodeId) {
-		var message = "Beacon " + nodeId + " is active!";
-		console.log(message);
+	// Stop scanner
+	bluerange.stopScanning(
+		function(successMessage) {
+		console.log("Stopped scanner successfully.");
+	},  function(errorMessage) {
+		console.log("Failed to stop scanner.");
+	});
+	}, 3000);
+
+	// Register callback
+	bluerange.addScannerCallback(function(message) {
+		console.log("Received message: " + message);
+	});
+```
+
+#### Triggering
+```js
+	// Starts the beacon trigger
+	bluerange.startBeaconTrigger(
+		function(successMessage) {
+			console.log("Beacon trigger start succeeded.");
+	},  function(errorMessage) {
+			console.log("Beacon trigger start failed.");
 	});
 
-	// Will be called whenever a beacon has lost its state as being the nearest.
-	bluerange.addBeaconInactiveListener(function(nodeId) {
-		var message = "Beacon " + nodeId + " is inactive!";
-		console.log(message);
+	// Called when another beacon has become the nearest one.
+	bluerange.addBeaconActiveListener(function(message) {
+
 	});
 
-	// Stops scanning beacons.
-	bluerange.stopScanning(function(message) {
-		console.log("Stopping scanning successful.");
-	}, function(message) {
-		console.log("Stopping scanning failed.");
+	// Called when a beacon is not the nearest one anymore.
+	bluerange.addBeaconInactiveListener(function(message) {
+
 	});
 ```
 
@@ -108,6 +118,29 @@ A Cordova plugin that makes the BlueRange SDK accessible for Cordova apps. Using
 	});
 ```
 
+#### Enrollment
+```js
+	// Sending enrollment info to beacon
+	var enrollmentInfo = {};
+	bluerange.sendEnrollmentToBeacon(enrollmentInfo,
+		function(successMessage) {
+			console.log("Beacon enrollment succeeded.");
+		}, function(errorMessage) {
+			console.log("Beacon enrollment failed.");
+		}
+	);
+```
+
+#### Info
+```js
+	// Get the SDK version as a string
+	bluerange.getVersion(function(versionName) {
+		console.log("Version name = " + versionName);
+	});
+```
+
+For more information about the plugin API, please check the `bluerange.js`.
+
 ### Add iOS or Android platform to your project.
 
     cordova platform add ios
@@ -117,11 +150,20 @@ A Cordova plugin that makes the BlueRange SDK accessible for Cordova apps. Using
 - Before you build and run, you must set the minSDK to 18 in the AndroidManifest.xml in your project's 'platforms/android' directory.
 
 ### iOS:
-- After you have added the cordova plugin to your app, open the .xcodeproj under platforms->ios. Select a development team in the "Signing" section of your project. 
-- Select your target, open the tab "General" and (remove and) add the BlueRangeSDK.framework to "Embedded binaries", which can be found in the plugin's "libs" folder.
-- Moreover, make sure that under Build Settings -> Runpath Search Paths the value @executable_path/Frameworks is set.
-- Furthermore, for iOS 10 devices, you need to add the NSBluetoothPeripheralUsageDescription property to the info.plist file.
-- If the plugin is not correctly added to your project, please make sure that your config.xml contains the following xml element:
+1. After you have added the cordova plugin to your app, open the .xcodeproj under platforms->ios. Select a development team in the "Signing" section of your project. 
+![Choose your Certificate](assets/ios/install/signing.png)
+2. Select your target, open the tab "General" and (remove and) add the BlueRangeSDK.framework to "Embedded binaries", which can be found in the plugin's "libs" folder.
+![Embedded Binaries](assets/ios/install/add-framework.png)
+3. Moreover, make sure that under Build Settings -> Runpath Search Paths the value @executable_path/Frameworks is set.
+![Build Settings -> Runpath](assets/ios/install/executable_path.png)
+4. Furthermore, for iOS 10 devices, you need to add the NSBluetoothPeripheralUsageDescription property to the config.xml file.
+```xml
+<plugin name="com.mway.bluerange.android" spec="<path_to_bluerange_sdk_plugin>">
+	<variable name="NSBluetoothPeripheralUsageDescription" value="My App Demo would use your bluetooth." />
+</plugin>
+```
+
+5. If the plugin was not correctly added to your project, please make sure that your config.xml contains the following XML element:
 ```xml
 <feature name="BlueRangePlugin">
 	<param name="ios-package" value="BlueRangePlugin" />
