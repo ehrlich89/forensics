@@ -16,7 +16,7 @@ A Cordova plugin that makes the BlueRange SDK available for Cordova apps. The pl
 
 ### Sample code 
 
-Edit the `www/js/index.js` of your project. The following functions can be called inside the `onDeviceReady` function. For more information, please check the `www/bluerange.js` in the plugin repository.
+Edit the `www/js/index.js` of your project. The following functions can be used inside the `onDeviceReady` function. For more information, please check the `www/bluerange.js` in the plugin repository.
 
 #### Bluetooth availability
 ```js
