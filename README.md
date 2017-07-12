@@ -18,64 +18,64 @@ A Cordova plugin that makes the BlueRange SDK accessible for Cordova apps. This 
 
 #### Bluetooth availability
 ```js
-	// Checks whether this device supports Bluetooth Low Energy.
-	bluerange.isBluetoothLeSupported(function(enabled) {
-		if (enabled === "true") {
-			console.log("This device supports Bluetooth Low Energy.");
-		} else {
-			console.log("This device does not support Bluetooth Low Energy.");
-		}
-	});
+// Checks whether this device supports Bluetooth Low Energy.
+bluerange.isBluetoothLeSupported(function(enabled) {
+	if (enabled === "true") {
+		console.log("This device supports Bluetooth Low Energy.");
+	} else {
+		console.log("This device does not support Bluetooth Low Energy.");
+	}
+});
 
-	// Checks whether Bluetooth Low Energy is enabled.
-	bluerange.isBluetoothLeEnabled(function(enabled) {
-		if (enabled === "true") {
-			console.log("Bluetooth is enabled");
-		} else {
-			console.log("Bluetooth is not enabled");
-		}
-	});
-	
-	// Checks whether the Location services are enabled on Android devices.
-	bluerange.isAndroidLocationServicesEnabled(function(enabled) {
-		if (enabled === "true") {
-			console.log("Location services are enabled!");
-		} else {
-			console.log("Location services are not enabled!");
-		}
-	});
+// Checks whether Bluetooth Low Energy is enabled.
+bluerange.isBluetoothLeEnabled(function(enabled) {
+	if (enabled === "true") {
+		console.log("Bluetooth is enabled");
+	} else {
+		console.log("Bluetooth is not enabled");
+	}
+});
+
+// Checks whether the Location services are enabled on Android devices.
+bluerange.isAndroidLocationServicesEnabled(function(enabled) {
+	if (enabled === "true") {
+		console.log("Location services are enabled!");
+	} else {
+		console.log("Location services are not enabled!");
+	}
+});
 ```
 
 #### Scanning
 ```js
-	// Configure scanner
-	var scanOptions = {
-		scanJoinMeMessages: true,
-		scanPeriodInMs: 200,
-		betweenScanPeriodInMs: 1
-	};
+// Configure scanner
+var scanOptions = {
+	scanJoinMeMessages: true,
+	scanPeriodInMs: 200,
+	betweenScanPeriodInMs: 1
+};
 
-	// Start scanner
-	bluerange.startScanning(scanOptions,
-		function(sucessMessage) {
-		console.log("Started scanner successfully.");
-	},  function(errorMessage) {
-		console.log("Failed to start scanner.");
-	});
+// Start scanner
+bluerange.startScanning(scanOptions,
+	function(sucessMessage) {
+	console.log("Started scanner successfully.");
+},  function(errorMessage) {
+	console.log("Failed to start scanner.");
+});
 
-	// Stop scanner
-	bluerange.stopScanning(
-		function(successMessage) {
-		console.log("Stopped scanner successfully.");
-	},  function(errorMessage) {
-		console.log("Failed to stop scanner.");
-	});
-	}, 3000);
+// Stop scanner
+bluerange.stopScanning(
+	function(successMessage) {
+	console.log("Stopped scanner successfully.");
+},  function(errorMessage) {
+	console.log("Failed to stop scanner.");
+});
+}, 3000);
 
-	// Register callback
-	bluerange.addScannerCallback(function(message) {
-		console.log("Received message: " + message);
-	});
+// Register callback
+bluerange.addScannerCallback(function(message) {
+	console.log("Received message: " + message);
+});
 ```
 
 #### Triggering
@@ -101,42 +101,42 @@ A Cordova plugin that makes the BlueRange SDK accessible for Cordova apps. This 
 
 #### Advertising
 ```js
-	// Starts sending advertising messages to the beacons 
-	// which generate the heatmap data. So, if advertising is
-	// running, you should see the device on the heatmap in Relution.
-	bluerange.startAdvertisingDiscoveryMessage(function(message) {
-		console.log("Starting advertising succeeded.");
-	}, function(message) {
-		console.log("Starting advertising failed. " + message);
-	});
-	
-	// Stops sending advertising messages to the beacons.
-	bluerange.stopAdvertising(function(message) {
-		console.log("Stopping advertising succeeded.");
-	}, function(message) {
-		console.log("Stopping advertising failed. " + message);
-	});
+// Starts sending advertising messages to the beacons 
+// which generate the heatmap data. So, if advertising is
+// running, you should see the device on the heatmap in Relution.
+bluerange.startAdvertisingDiscoveryMessage(function(message) {
+	console.log("Starting advertising succeeded.");
+}, function(message) {
+	console.log("Starting advertising failed. " + message);
+});
+
+// Stops sending advertising messages to the beacons.
+bluerange.stopAdvertising(function(message) {
+	console.log("Stopping advertising succeeded.");
+}, function(message) {
+	console.log("Stopping advertising failed. " + message);
+});
 ```
 
 #### Enrollment
 ```js
-	// Sending enrollment info to beacon
-	var enrollmentInfo = {};
-	bluerange.sendEnrollmentToBeacon(enrollmentInfo,
-		function(successMessage) {
-			console.log("Beacon enrollment succeeded.");
-		}, function(errorMessage) {
-			console.log("Beacon enrollment failed.");
-		}
-	);
+// Sending enrollment info to beacon
+var enrollmentInfo = {};
+bluerange.sendEnrollmentToBeacon(enrollmentInfo,
+	function(successMessage) {
+		console.log("Beacon enrollment succeeded.");
+	}, function(errorMessage) {
+		console.log("Beacon enrollment failed.");
+	}
+);
 ```
 
 #### Info
 ```js
-	// Get the SDK version as a string
-	bluerange.getVersion(function(versionName) {
-		console.log("Version name = " + versionName);
-	});
+// Get the SDK version as a string
+bluerange.getVersion(function(versionName) {
+	console.log("Version name = " + versionName);
+});
 ```
 
 For more information about the plugin API, please check the `bluerange.js`.
