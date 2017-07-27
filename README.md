@@ -24,6 +24,7 @@ Currently the following features are supported:
     - Eddystone URL message: Another Eddystone beacon format that contains a URL.
     - Join Me message: FruityMesh beacons broadcast these messages to establish a beacon network. Each packet holds the beacon id, its connectivity and some other useful information that can be used to analyze the mesh.
     - Relution Tag message: An advertising message format only supported by the Relution beacon management platform. It contains a list of tags that can be mapped to app specific actions in offline scenarios.
+	- Asset tracking message: An advertising message broadcasted by Relution AssetBeacons, used to locate assets in a building.
 - The scan procedure will be continued when the app is running in background, even when the user attempts to terminate the app.
 - The energy consumption can be adjusted dynamically by changing scan properties like the scan interval.
 
